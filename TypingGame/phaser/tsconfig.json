@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "outDir": "../../WebDesign/Source/JS",
+        "outDir": "../../",
         "sourceMap": true,
         "noImplicitAny": true,
         "module": "commonjs",

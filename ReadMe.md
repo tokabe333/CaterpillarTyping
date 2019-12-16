@@ -10,12 +10,44 @@
 - Chrome とか Firefoxあたり想定
 - Phaser3 + Typescript2.7(?)
 - それ以外はHTML+SCSS+JQuery
+<br><br>
+
+## ゲーム部分以外のデザインについて
+
+### HTML5
+- 有能
+
+### SCSS
+- CSSの拡張した感じのやつ
+- ネストしてかけるので便利便利
+    - 各項目で自身に一番近い(深い)設定が反映
+- コンパイルすると結局CSSになる
+- リアルタイムにコンパイルする必要あり
+    - 環境設定頑張れ
+        - JetBrains 系
+        - VS Code 系
+        - ATOM 系
+
+### JQuery
+- JavaScriptはうんち
+- JQueryは脳死で使える所がいい感じ
+- なおちんが得意なやつ
+- 石津くんと岡村くんはアンチしてる
+<br><br>
 
 ## 環境構築
-### npm
+### TypeScriptインストール
 - npm install -g typescript@2.7.2
+### Phaserプロジェクト作成
+- npm init
+- npm i -D webpack webpack-dev-server awesome-typescript-loader source-map-loader
+- npm i -D phaser
+- package.json の "scripts" に webpackビルドコマンド追記
 
-## 備忘録
+
+## 
+### TypeScript + Node.js プロジェクトのはじめかた2019
+https://qiita.com/notakaos/items/3bbd2293e2ff286d9f49
 ### Phaserでブラウザゲー制作 Part.1 環境整備
 https://qiita.com/d2cd-ytakada/items/dd4a5bf20d3066bf8c3f
 
