@@ -1,31 +1,19 @@
-/// <reference path="../../../TypingGame/phaser/node_modules/phaser/typescript/phaser.d.ts"/>
+import * as Phaser from "phaser";
 
-class MainState extends Phaser.State {
-    constructor() {
-        super();
-    }
+export class Game extends Phaser.Scene {
+  init() {
+    console.log('Initializing.') // クラスのメンバ変数の初期化
+  }
 
-    // init() -> preload() -> create()の順に呼び出され、
-    // update()がメインループとなる
+  preload() {
+    console.log('Load assets.') // アセットのロード
+  }
 
-    init() {
-        console.log("init()");
-    }
+  create() {
+    console.log('Draw objects to canvas.') // ゲームオブジェクトの描写
+  }
 
-    // おもにリソースファイルのダウンロードを行う
-    preload() {
-        console.log("preload()");
-    }
-
-    // おもにゲームオブジェクト関連の初期化を行う
-    create() {
-        console.log("create()");
-    }
-
-    // メインループ
-    update() {
-        console.log("update()");
-    }
+  update() {
+    console.log('Call at every frames.') // ゲームの各フレーム更新毎に呼びだされる
+  }
 }
-
-export {MainState};

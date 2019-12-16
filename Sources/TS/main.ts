@@ -1,14 +1,33 @@
-/// <reference path="../node_modules/phaser/typescript/phaser.d.ts"/>
+// Phaser3とシーンプログラムのインポート
+import * as Phaser from "phaser";
+import { Game } from "./mainState";
+import { Preload} from "./Preload";
 
-import {MainState} from "./mainState";
 
-// new Phaser.Game(width, height, レンダラ(Phaser.AUTOで自動選択), DOMエレメント指定)
-let game    = new Phaser.Game(640, 480, Phaser.AUTO, "");
+// Phaser3のゲームクラスの記述（Phaser.Gameクラスを継承したMainクラスの記述）
+class Main extends Phaser.Game {
+  constructor() {
 
-// MainStateクラスを、"mainState"という名前で状態登録
-game.state.add("mainState", MainState);
+    // Phaser.Gameのコンフィグ
+    const config: Phaser.Types.Core.GameConfig = {
+      type: Phaser.AUTO,
+      width: 800, // ゲーム横幅
+      height: 600, // ゲーム縦幅
+    };
+    super(config); // Phaser.Gameクラスにコンフィグを渡す
 
-window.onload   = () => {
-    // 登録した状態のうち、"mainState"をスタートする
-    game.state.start("mainState");
+    // シーンにキーを割り振って登録
+    this.scene.add("preload", Preload, false);
+    this.scene.add("game", Game, false);
+
+    // シーンをスタート
+    this.scene.start("preload");
+  }
 }
+
+// ブラウザでDOM描写終了直後に呼び出される
+window.onload = () => {
+
+  // Mainクラスのインスタンスを生成（ここで初めてゲームが生成）
+  const GameApp: Phaser.Game = new Main();
+};
