@@ -7,7 +7,7 @@ module.exports = [{
     },
     output  : {
         path        :  path.join(__dirname, "Sources", "JS"),
-        filename    : "[name].js",
+        filename    : "ngo.js",
         //publicPath  : "/js/",
     },
     devtool: "source-map",
