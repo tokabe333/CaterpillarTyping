@@ -5,18 +5,27 @@
 - NginX
 - Django
 - MySQL
-
 ### フロントエンド
 - Chrome とか Firefoxあたり想定
 - Phaser3 + Typescript2.7(?)
 - それ以外はHTML+SCSS+JQuery
 <br><br>
 
-## ゲーム部分以外のデザインについて
+## ゲーム部分について
+### Phaser3
+- なんかWeb系のフレームワークっぽい
+- 外人ニキがGitHubで作ってる
+- 日本語文献はんにゃぴ…
+- ECMAScript2016 があれば動くっぽい
+### TypeScript 2.7
+- バージョンは2.7が安定してる？
+- 2.1以降ならESMAScript2016に対応してる
+- 最新は3.8(2019年11月リリース)
+<br><br>
 
+## ゲーム部分以外のデザインについて
 ### HTML5
 - 有能
-
 ### SCSS
 - CSSの拡張した感じのやつ
 - ネストしてかけるので便利便利
@@ -27,13 +36,13 @@
         - JetBrains 系
         - VS Code 系
         - ATOM 系
-
 ### JQuery
 - JavaScriptはうんち
 - JQueryは脳死で使える所がいい感じ
 - なおちんが得意なやつ
 - 石津くんと岡村くんはアンチしてる
 <br><br>
+
 
 ## 環境構築
 ### TypeScriptインストール
