@@ -1,0 +1,20 @@
+{
+  "name": "caterpillar_typing",
+  "version": "1.0.0",
+  "description": "caterpillar world!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpack": "webpack -d --progress --colors --watch",
+    "start": "webpack-dev-server --content-base dist/"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "awesome-typescript-loader": "^5.2.1",
+    "phaser": "^3.21.0",
+    "source-map-loader": "^0.2.4",
+    "webpack": "^4.41.3",
+    "webpack-dev-server": "^3.9.0"
+  },
+}

@@ -11,6 +11,10 @@
 - Phaser3 + Typescript2.7(?)
 - それ以外はHTML+SCSS+JQuery
 
+## 環境構築
+### npm
+- npm install -g typescript@2.7.2
+
 ## 備忘録
 ### Phaserでブラウザゲー制作 Part.1 環境整備
 https://qiita.com/d2cd-ytakada/items/dd4a5bf20d3066bf8c3f
