@@ -1,11 +1,15 @@
 {
     "compilerOptions": {
         "outDir": "./Sources/JS",
+        "rootDir": "./Sources/HTML",
         "sourceMap": true,
         "noImplicitAny": true,
         "module": "commonjs",
-        "target": "es5"
+        "target": "ES6",
+        "strict": true,
+        "esModuleInterop": true,
     },
+    "exclude": [ "node_modules"],
     "include": [
         "./Sources/**/*"
     ]

@@ -6,30 +6,29 @@ module.exports = [{
         main: "./Sources/TS/main.ts",
     },
     output  : {
-        path        : "./Sources/JS",
+        path        :  path.join(__dirname, "Sources", "JS"),
         filename    : "[name].js",
-        publicPath  : "/js/",
+        //publicPath  : "/js/",
     },
     devtool: "source-map",
     resolve : {
-        extensions: ["", ".ts", ".js"],
-        moduleDirectories: ["node_modules"]
+        extensions: [".ts", ".js"],
+        //moduleDirectories: ["./node_modules"],
     },
-    module  : {
-        loaders : [
+    module : {
+        rules:[
+            {
+                test: /\.js$/,
+                loader: "source-map-loader",   
+            },
             {
                 test    : /\.ts$/,
                 loader  : "awesome-typescript-loader",
                 exclude : [
                     /node_modules/,
-                ],
+                ]
             },
-        ],
-        preLoaders: [
-            {
-                test: /\.js$/,
-                loader: "source-map-loader"
-            }
+
         ]
     },
 }]
