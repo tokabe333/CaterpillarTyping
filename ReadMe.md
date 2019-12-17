@@ -57,8 +57,12 @@
 ## 備忘録
 #### TypeScript + Node.js プロジェクトのはじめかた2019
 https://qiita.com/notakaos/items/3bbd2293e2ff286d9f49
+
 #### Phaserでブラウザゲー制作 Part.1 環境整備
 https://qiita.com/d2cd-ytakada/items/dd4a5bf20d3066bf8c3f
+
+#### TypeScriptチュートリアル① -環境構築編-
+https://qiita.com/ochiochi/items/efdaa0ae7d8c972c8103
 
 #### Phaserでブラウザゲー制作 Part.2 ジャンピングゲーム
 https://qiita.com/d2cd-ytakada/items/79456097c294fb49cf08
@@ -68,6 +72,18 @@ https://magazine.halake.com/entry/phaser-ts-rpg-simple1
 
 #### Phaser3 + Typescriptを使ってRPGゲームの基礎を作ろう！その2
 https://magazine.halake.com/entry/phaser-ts-rpg-simple2
+
+#### Webpack・TypeScript入門
+https://qiita.com/ririli/items/b4485676cf989dfa3fe7
+
+#### Typescriptのコンパイル環境を作成する(webpack 4.0.0)
+https://qiita.com/masterkey1009/items/0d76d5be0a99dfae5485
+
+#### webpack4対応webpack-dev-serverの主要な設定オプション(CLI,webpack.config.js)の意味と挙動
+https://qiita.com/riversun/items/d27f6d3ab7aaa119deab
+
+#### 公式ドキュメントに沿ってTypescript + Express + React + Webpack を検証
+https://qiita.com/adibozu/items/a01cc79efc7e8c543aa1
 
 #### Phaser3 Documentation
 https://photonstorm.github.io/phaser3-docs/
