@@ -6,8 +6,8 @@ module.exports = [{
         main: "./Sources/TS/main.ts",
     },
     output  : {
-        path        :  path.join(__dirname, "Sources", "JS"),
-        filename    : "ngo.js",
+        path        :  __dirname + "/Sources/JS/",
+        filename    : "[name].js",
         //publicPath  : "/js/",
     },
     devtool: "source-map",
