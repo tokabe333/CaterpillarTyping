@@ -18,7 +18,7 @@ export class Preload extends Phaser.Scene {
   // ここから追加
   create() {
     this.cameras.main.setBackgroundColor(this.bk_color)
-    this.startText = this.add.text(400, 300, 'START', this.fontStyle)
+    this.startText = this.add.text(400, 300, 'ほっちぃ', this.fontStyle)
 
     this.startText.setOrigin(0.5)
   }
