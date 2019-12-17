@@ -12,15 +12,21 @@
 <br><br>
 
 ## ゲーム部分について
-### Phaser3
+### Phaser 3.21.0
 - なんかWeb系のフレームワークっぽい
 - 外人ニキがGitHubで作ってる
 - 日本語文献はんにゃぴ…
 - ECMAScript2016 があれば動くっぽい
-### TypeScript 2.7
+### TypeScript 2.7.2
 - バージョンは2.7が安定してる？
 - 2.1以降ならESMAScript2016に対応してる
 - 最新は3.8(2019年11月リリース)
+### その他ライブラリ関係
+- ts-loader 6.2.1
+- source-map-loader 0.2.4
+- webpack 4.41.3
+- webpack-cli 3.3.10
+- webpack-dev-server 3.9.0
 <br><br>
 
 ## ゲーム部分以外のデザインについて
@@ -49,10 +55,12 @@
 - npm install -g typescript@2.7.2
 ### Phaserプロジェクト作成
 - npm init
-- npm i -D webpack webpack-dev-server awesome-typescript-loader source-map-loader
-- npm i -D phaser
-- package.json の "scripts" に webpackビルドコマンド追記
-
+- npm i -D webpack@4.41 webpack-dev-server@3.9 ts-loader@6.2 source-map-loader@0.2.4
+- npm i -D phaser@3.21
+- package.json の確認
+- tsconfig.json の編集
+- webpack.config.js の編集
+<br><br>
 
 ## 備忘録
 #### TypeScript + Node.js プロジェクトのはじめかた2019
