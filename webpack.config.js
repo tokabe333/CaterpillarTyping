@@ -7,7 +7,7 @@ module.exports = [{
     },
     output  : {
         path        :  __dirname + "/Sources/JS/",
-        filename    : "[name].js",
+        filename    : "bundle.js",
         //publicPath  : "/js/",
     },
     devtool: "source-map",
@@ -21,14 +21,15 @@ module.exports = [{
                 test: /\.js$/,
                 loader: "source-map-loader",   
             },
+            // {
+            //     test    : /\.ts$/,
+            //     loader  : "awesome-typescript-loader",
+            //     exclude : [/node_modules/]
+            // },
             {
-                test    : /\.ts$/,
-                loader  : "awesome-typescript-loader",
-                exclude : [
-                    /node_modules/,
-                ]
+                test: /\.ts$/,
+                loader: "ts-loader"
             },
-
         ]
     },
 }]
