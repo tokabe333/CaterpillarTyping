@@ -101,6 +101,9 @@ https://qiita.com/riversun/items/d27f6d3ab7aaa119deab
 #### 公式ドキュメントに沿ってTypescript + Express + React + Webpack を検証
 https://qiita.com/adibozu/items/a01cc79efc7e8c543aa1
 
+#### tsconfig 日本語訳
+https://qiita.com/alfas/items/539ade65926deb530e0e
+
 #### 公式チュートリアル
 https://phaser.io/learn/community-tutorials
 
