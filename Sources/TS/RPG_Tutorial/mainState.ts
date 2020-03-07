@@ -2,6 +2,8 @@ import * as Phaser from "phaser";
 
 // 自キャラの動作状態
 type WalkAnimState = 'walk_front' | 'walk_back' | 'walk_left' | 'walk_right' | ''
+// 自キャラの移動方向
+type MoveDir = -1 | 0 | 1
 
 export class GameState extends Phaser.Scene {
   // --------------- Private変数(undifined可) ---------------
@@ -14,14 +16,16 @@ export class GameState extends Phaser.Scene {
 
   // --------------- Private変数(undifined不可) ---------------
   private mapGround: number[][] = new Array();
-  private col: number = 15;
-  private row: number = 20;
   private heroAnims: {key: string, frameStart: number, frameEnd: number}[] = [
     {key: "walk_front", frameStart: 0, frameEnd: 2},
     {key: "walk_left", frameStart: 3, frameEnd: 5},
     {key: "walk_right", frameStart: 6, frameEnd: 8},
     {key: "walk_back", frameStart: 9, frameEnd: 11},
   ]
+  private col: number = 15;
+  private row: number = 20;
+  private heroIsWalking: boolean = false;
+  private heroWalkSpeed: number = 40;
 
   // --------------- Phaser用メソッド ---------------
   // クラスのメンバ変数の初期化
@@ -74,16 +78,25 @@ export class GameState extends Phaser.Scene {
   update() {
     // 前フレームとの比較用
     let anim: WalkAnimState = "";
+    let xDir: MoveDir = 0;
+    let yDir: MoveDir = 0;
+
+    // 自キャラが移動途中なら入力を受け付けない
+    if(this.heroIsWalking) return;
 
     // キー入力より状態決定
     if(this.cursors!.up!.isDown){
       anim = "walk_back";
+      yDir = -1;
     }else if(this.cursors!.down!.isDown){
       anim = "walk_front";
+      yDir = 1;
     }else if(this.cursors!.left!.isDown){
       anim = "walk_left";
+      xDir = -1;
     }else if(this.cursors!.right!.isDown){
       anim = "walk_right";
+      xDir = 1;
     }else{
       this.hero!.anims.stop();
       this.heroAnimState = "";
@@ -95,6 +108,10 @@ export class GameState extends Phaser.Scene {
       this.hero!.anims.play(anim);
       this.heroAnimState = anim;
     } // End_If
+
+    // ヒーローをグリッドに沿って歩かせる
+    this.heroIsWalking = true;
+    this.gridWalkTween(this.hero, this.heroWalkSpeed, xDir, yDir, () => {this.heroIsWalking = false})
   } //End_Method
 
 
@@ -114,5 +131,31 @@ export class GameState extends Phaser.Scene {
       frameRate: 8,
       repeat: -1
     } //End_Return
+  } //End_Method
+
+  // グリッドに沿って歩かせる
+  private gridWalkTween(target: any, baseSpeed: number, xDir: MoveDir, yDir: MoveDir, onComplete: () => void){
+    // ターゲットが指定されていなければ何もしない
+    if(target.x === false || target.y === false) return;
+
+    let tween: Phaser.Tweens.Tween = this.add.tween({
+      // 対象オブジェクト
+      targets: [target],
+      x: {
+        getStart: () => target.x,
+        getEnd: () => target.x + (baseSpeed * xDir)
+      },
+      y: {
+        getStart: () => target.y,
+        getEnd: () => target.y + (baseSpeed * yDir)
+      },
+      // アニメーション時間
+      duration: 300,
+      // アニメーション終了時のコールバック
+      onComplete: () => {
+        tween.stop()
+        onComplete()
+      }
+    }) //End_Let
   } //End_Method
 } //End_Class
