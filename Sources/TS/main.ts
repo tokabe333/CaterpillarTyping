@@ -27,7 +27,6 @@ class Main extends Phaser.Game {
 
 // ブラウザでDOM描写終了直後に呼び出される
 window.onload = () => {
-
   // Mainクラスのインスタンスを生成（ここで初めてゲームが生成）
   const GameApp: Phaser.Game = new Main();
 };
