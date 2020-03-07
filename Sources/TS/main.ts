@@ -1,7 +1,7 @@
 // Phaser3とシーンプログラムのインポート
 import * as Phaser from "phaser";
-import { Game } from "./mainState";
-import { Preload} from "./Preload";
+import { GameState } from "./RPG_Tutorial/mainState";
+import { Preload} from "./RPG_Tutorial/Preload";
 
 
 // Phaser3のゲームクラスの記述（Phaser.Gameクラスを継承したMainクラスの記述）
@@ -18,7 +18,7 @@ class Main extends Phaser.Game {
 
     // シーンにキーを割り振って登録
     this.scene.add("preload", Preload, false);
-    this.scene.add("game", Game, false);
+    this.scene.add("game", GameState, false);
 
     // シーンをスタート
     this.scene.start("preload");
@@ -27,6 +27,7 @@ class Main extends Phaser.Game {
 
 // ブラウザでDOM描写終了直後に呼び出される
 window.onload = () => {
+
   // Mainクラスのインスタンスを生成（ここで初めてゲームが生成）
   const GameApp: Phaser.Game = new Main();
 };
