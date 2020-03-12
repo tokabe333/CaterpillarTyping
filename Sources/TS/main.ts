@@ -2,6 +2,7 @@
 import * as Phaser from "phaser";
 import { GameState } from "./RPG_Tutorial/mainState";
 import { Preload} from "./RPG_Tutorial/Preload";
+import { TypingTest } from "./Typing/TypingTest";
 
 
 // Phaser3のゲームクラスの記述（Phaser.Gameクラスを継承したMainクラスの記述）
@@ -19,7 +20,7 @@ class Main extends Phaser.Game {
     // シーンにキーを割り振って登録
     this.scene.add("preload", Preload, false);
     this.scene.add("game", GameState, false);
-
+    this.scene.add("typing", TypingTest, false);
     // シーンをスタート
     this.scene.start("preload");
   }

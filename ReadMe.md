@@ -101,6 +101,9 @@ https://qiita.com/riversun/items/d27f6d3ab7aaa119deab
 #### 公式ドキュメントに沿ってTypescript + Express + React + Webpack を検証
 https://qiita.com/adibozu/items/a01cc79efc7e8c543aa1
 
+#### MacでPhaser使ってゲーム作る話 #002 Phaserの基本部分
+https://qiita.com/orzngo/items/703daf24798ccbc24fdd
+
 #### tsconfig 日本語訳
 https://qiita.com/alfas/items/539ade65926deb530e0e
 

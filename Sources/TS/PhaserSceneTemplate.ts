@@ -6,7 +6,7 @@ export class __ClassName__ extends Phaser.Scene {
   // --------------- Private変数(undifined不可) ---------------
 
   // --------------- Phaser用メソッド ---------------
-  
+
   // クラスのメンバ変数の初期化
   init() {
 
@@ -19,7 +19,7 @@ export class __ClassName__ extends Phaser.Scene {
 
   // ゲームオブジェクトの描写
   create() {
-   
+    
   } //End_Method
 
   // ゲームの各フレーム更新毎に呼びだされる

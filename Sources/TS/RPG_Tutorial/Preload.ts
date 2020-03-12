@@ -26,7 +26,8 @@ export class Preload extends Phaser.Scene {
     this.startText.setInteractive();
     this.startText.on("pointerdown", () => {
       //alert("げーむすたーと");
-      this.scene.start("game");
+      //this.scene.start("game");
+      this.scene.start("typing");
     });
   } //End_Method
   
