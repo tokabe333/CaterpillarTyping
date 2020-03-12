@@ -1,4 +1,4 @@
-// タイピングする際に日本語と入力文字列の対応
+// タイピングする際に日本語とローマ字との対応
 
 export var typingIndex: {[key: string]: string[]} = {};
 
