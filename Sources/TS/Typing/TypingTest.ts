@@ -1,5 +1,6 @@
 import * as Phaser from "phaser";
 
+
 export class TypingTest extends Phaser.Scene {
     // --------------- Private変数(undifined可) ---------------
     // 画面上に表示するテキストオブジェクト
@@ -8,24 +9,24 @@ export class TypingTest extends Phaser.Scene {
 
     // --------------- Private変数(undifined不可) ---------------
     // タイピング画面に表示するテキスト
-    private previewString: string[] = new Array();
+    private previewString: string[] = [
+        "世界は色に溢れている",
+        "横浜にもこんな選手がいるんだ",
+    ];
     // 入力を受け付けるテキスト
-    private typingString: string[] = new Array();
+    private typingString: string[] = [
+        "sekaihaironiahureteiru",
+        "yokohamanimokonnnasensyugairunda",
+    ]
 
     // 背景色とフォントスタイル
     private backColor: string = "0x008d00";
-    private fontStyle: Phaser.Types.GameObjects.Text.TextStyle = { color: "white", fontSize: "10px"};
+    private fontStyle: Phaser.Types.GameObjects.Text.TextStyle = { color: "white", fontSize: "60px", fontFamily: 'HG行書体'};
 
     // --------------- Phaser用メソッド ---------------
 
     // クラスのメンバ変数の初期化
-    init() {
-        // テスト用文章
-        this.previewString[0] = "世界は色に溢れている";
-        this.typingString[0] = "sekaihaironiahureteiru";
-        this.previewString[1] = "横浜にもこんな選手がいるんだ";
-        this.typingString[1] = "yokohamanimokonnnasensyugairunda";
-    } //End_Method
+    init() {    } //End_Method
 
     // アセットのロード
     preload() {
@@ -35,7 +36,8 @@ export class TypingTest extends Phaser.Scene {
     // ゲームオブジェクトの描写
     create() {
         this.cameras.main.setBackgroundColor(this.backColor);
-        this.previewText = this.add.text(10, 200, this.previewString[0], this.fontStyle);
+        this.previewText = this.add.text(400, 300, this.previewString[0], this.fontStyle).setOrigin(0.5);
+        this.typingText = this.add.text(400, 250, this.typingString[0], this.fontStyle).setOrigin(0.5);
     } //End_Method
 
     // ゲームの各フレーム更新毎に呼びだされる

@@ -14,6 +14,7 @@ class Main extends Phaser.Game {
       type: Phaser.AUTO,
       width: 800, // ゲーム横幅
       height: 600, // ゲーム縦幅
+      title: "芋虫タイピング" // ページタイトル
     };
     super(config); // Phaser.Gameクラスにコンフィグを渡す
 

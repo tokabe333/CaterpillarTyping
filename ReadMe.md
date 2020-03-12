@@ -74,20 +74,8 @@
 #### TypeScript + Node.js プロジェクトのはじめかた2019
 https://qiita.com/notakaos/items/3bbd2293e2ff286d9f49
 
-#### Phaserでブラウザゲー制作 Part.1 環境整備
-https://qiita.com/d2cd-ytakada/items/dd4a5bf20d3066bf8c3f
-
 #### TypeScriptチュートリアル① -環境構築編-
 https://qiita.com/ochiochi/items/efdaa0ae7d8c972c8103
-
-#### Phaserでブラウザゲー制作 Part.2 ジャンピングゲーム
-https://qiita.com/d2cd-ytakada/items/79456097c294fb49cf08
-
-#### Phaser3 + Typescriptを使ってRPGゲームの基礎を作ろう！その１
-https://magazine.halake.com/entry/phaser-ts-rpg-simple1
-
-#### Phaser3 + Typescriptを使ってRPGゲームの基礎を作ろう！その2
-https://magazine.halake.com/entry/phaser-ts-rpg-simple2
 
 #### Webpack・TypeScript入門
 https://qiita.com/ririli/items/b4485676cf989dfa3fe7
@@ -101,8 +89,23 @@ https://qiita.com/riversun/items/d27f6d3ab7aaa119deab
 #### 公式ドキュメントに沿ってTypescript + Express + React + Webpack を検証
 https://qiita.com/adibozu/items/a01cc79efc7e8c543aa1
 
+#### Phaserでブラウザゲー制作 Part.1 環境整備
+https://qiita.com/d2cd-ytakada/items/dd4a5bf20d3066bf8c3f
+
+#### Phaserでブラウザゲー制作 Part.2 ジャンピングゲーム
+https://qiita.com/d2cd-ytakada/items/79456097c294fb49cf08
+
+#### Phaser3 + Typescriptを使ってRPGゲームの基礎を作ろう！その１
+https://magazine.halake.com/entry/phaser-ts-rpg-simple1
+
+#### Phaser3 + Typescriptを使ってRPGゲームの基礎を作ろう！その2
+https://magazine.halake.com/entry/phaser-ts-rpg-simple2
+
 #### MacでPhaser使ってゲーム作る話 #002 Phaserの基本部分
 https://qiita.com/orzngo/items/703daf24798ccbc24fdd
+
+#### Phaser3 | 基準値を指定してテキストを中央に揃える方法
+https://1-notes.com/add-text-set-align-to-center/
 
 #### tsconfig 日本語訳
 https://qiita.com/alfas/items/539ade65926deb530e0e
