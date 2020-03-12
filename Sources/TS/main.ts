@@ -11,10 +11,10 @@ class Main extends Phaser.Game {
 
     // Phaser.Gameのコンフィグ
     const config: Phaser.Types.Core.GameConfig = {
-      type: Phaser.AUTO,
+      type: Phaser.WEBGL,
       width: 800, // ゲーム横幅
       height: 600, // ゲーム縦幅
-      title: "芋虫タイピング" // ページタイトル
+      parent: "canvas-wrapper",
     };
     super(config); // Phaser.Gameクラスにコンフィグを渡す
 

@@ -23,6 +23,11 @@ export class TypingTest extends Phaser.Scene {
     private backColor: string = "0x008d00";
     private fontStyle: Phaser.Types.GameObjects.Text.TextStyle = { color: "white", fontSize: "60px", fontFamily: 'HG行書体'};
 
+    // 現在何個目のテキストを表示しているか
+    private currentTextNumber: number = 0;
+    // 現在何個目の文字を入力しているか
+    private currentCharacterNumber: number = 0;
+
     // --------------- Phaser用メソッド ---------------
 
     // クラスのメンバ変数の初期化
