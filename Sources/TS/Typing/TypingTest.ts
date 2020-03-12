@@ -1,5 +1,5 @@
 import * as Phaser from "phaser";
-
+import {typingIndex} from "./JapaneseRomanRelation";
 
 export class TypingTest extends Phaser.Scene {
     // --------------- Private変数(undifined可) ---------------
@@ -31,7 +31,8 @@ export class TypingTest extends Phaser.Scene {
     // --------------- Phaser用メソッド ---------------
 
     // クラスのメンバ変数の初期化
-    init() {    } //End_Method
+    init() {
+     } //End_Method
 
     // アセットのロード
     preload() {
