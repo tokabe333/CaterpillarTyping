@@ -110,6 +110,9 @@ https://1-notes.com/add-text-set-align-to-center/
 #### Phaser 3 : ブロック崩しを作ってみる ②　入力処理（キーボード、ゲームパッド）を作る
 https://gpnotes.hatenablog.jp/entry/2018/11/22/160002
 
+#### Phaser3 メモ
+https://nktk-tech.com/memo/phaser3/phaser3.html
+
 #### tsconfig 日本語訳
 https://qiita.com/alfas/items/539ade65926deb530e0e
 

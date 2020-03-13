@@ -16,9 +16,9 @@ export class TypingTest extends Phaser.Scene {
     ];
     // 入力を受け付けるテキスト
     private typingString: string[] = [
-        "sekaihaironiahureteiru",
-        "yokohamanimokonnnasensyugairunda",
-    ]
+        "せかいはいろにあふれている",
+        "よこはまにもこんなせんしゅがいるんだ",
+    ];
 
     // 背景色とフォントスタイル
     private backColor: string = "0x008d00";
@@ -33,7 +33,12 @@ export class TypingTest extends Phaser.Scene {
 
     // クラスのメンバ変数の初期化
     init() {
-     } //End_Method
+        // 入力時イベント
+        this.input.keyboard.on("keydown", () => {
+            alert("うんち");
+        });
+        var a = this.input.keyboard;
+    } //End_Method
 
     // アセットのロード
     preload() {
