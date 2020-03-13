@@ -1,7 +1,7 @@
 import * as Phaser from "phaser";
 
 // キー入力イベントを提供するクラス
-class GetKeyDown extends Phaser.Scene{
+class GetKeyDown{
     // キーボード入力取得用キーオブジェクト
     protected KeyA?: Phaser.Input.Keyboard.Key;
 
