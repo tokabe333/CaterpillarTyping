@@ -93,6 +93,7 @@ https://qiita.com/adibozu/items/a01cc79efc7e8c543aa1
 https://qiita.com/d2cd-ytakada/items/dd4a5bf20d3066bf8c3f
 
 <br><br>
+
 ## 備忘録 (TypeScript関連)
 #### tsconfig 日本語訳
 https://qiita.com/alfas/items/539ade65926deb530e0e
@@ -100,7 +101,11 @@ https://qiita.com/alfas/items/539ade65926deb530e0e
 #### TypeScriptの変数の末尾の"!"(エクスクラメーション/感嘆符)の意味
 https://qiita.com/zigenin/items/364264a6cf635b962542
 
+#### タイピングガチ勢が本格的タイピングゲーム（ローマ字入力）を実装してみた
+https://qiita.com/Arthur_Lugh/items/43b61877819e402c50d6
+
 <br><br>
+
 ## 備忘録 (Phaser関連)
 #### Phaserでブラウザゲー制作 Part.2 ジャンピングゲーム
 https://qiita.com/d2cd-ytakada/items/79456097c294fb49cf08
