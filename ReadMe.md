@@ -107,6 +107,9 @@ https://qiita.com/orzngo/items/703daf24798ccbc24fdd
 #### Phaser3 | 基準値を指定してテキストを中央に揃える方法
 https://1-notes.com/add-text-set-align-to-center/
 
+#### Phaser 3 : ブロック崩しを作ってみる ②　入力処理（キーボード、ゲームパッド）を作る
+https://gpnotes.hatenablog.jp/entry/2018/11/22/160002
+
 #### tsconfig 日本語訳
 https://qiita.com/alfas/items/539ade65926deb530e0e
 

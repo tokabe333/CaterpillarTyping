@@ -1,5 +1,6 @@
 import * as Phaser from "phaser";
-import {typingIndex} from "./JapaneseRomanRelation";
+import { jpnToRoman } from "./JapaneseRomanRelation";
+import { keyToRoman } from "./KeyboardRomanRelation";
 
 export class TypingTest extends Phaser.Scene {
     // --------------- Private変数(undifined可) ---------------

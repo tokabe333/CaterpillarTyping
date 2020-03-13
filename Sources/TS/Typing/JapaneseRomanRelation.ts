@@ -1,6 +1,5 @@
 // タイピングする際に日本語とローマ字との対応
-
-export var jpnToRoman: {[key: string]: string[]} = {};
+export var jpnToRoman: {[jpn: string]: string[]} = {};
 
 jpnToRoman["あ"] = ["a"];
 jpnToRoman["い"] = ["i", "yi"];
@@ -243,3 +242,8 @@ jpnToRoman["りゅ"] = ["ryu"];
 jpnToRoman["りぇ"] = ["rye"];
 jpnToRoman["りょ"] = ["ryo"];
 
+jpnToRoman["ー"] = ["-"];
+jpnToRoman["，"] = [","];
+jpnToRoman["．"] = ["."];
+jpnToRoman["、"] = [","];
+jpnToRoman["。"] = ["."];
