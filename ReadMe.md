@@ -94,6 +94,12 @@ https://qiita.com/d2cd-ytakada/items/dd4a5bf20d3066bf8c3f
 
 <br><br>
 
+## 備忘録 (Angular関連)
+#### Using Phaser in an Angular 8 Component
+https://medium.com/@braelynnn/using-phaser-in-an-angular-8-component-53644a2280e3
+
+<br><br>
+
 ## 備忘録 (TypeScript関連)
 #### tsconfig 日本語訳
 https://qiita.com/alfas/items/539ade65926deb530e0e
