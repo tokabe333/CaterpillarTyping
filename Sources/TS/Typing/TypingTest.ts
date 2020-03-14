@@ -18,12 +18,12 @@ export class TypingTest extends Phaser.Scene {
     // タイピング画面に表示するテキスト
     private previewString: string[] = [
         "世界は色に溢れている",
-        "横浜にもこんな選手がいるんだ",
+        "やきうのお兄ちゃん",
     ];
     // 入力を受け付けるテキスト
     private typingString: string[] = [
         "せかいはいろにあふれている",
-        "よこはまにもこんなせんしゅがいるんだ",
+        "やきうのおにいちゃん",
     ];
 
     // 背景色とフォントスタイル
@@ -56,7 +56,13 @@ export class TypingTest extends Phaser.Scene {
                 let currentStr = this.typingText!.text;
                 // 最後の文字が終了していたら次の文字列へ
                 if(this.currentCharacterNumber >= currentStr.length){
-                    
+                    // 次の文字列へ
+                    this.currentTextNumber += 1;
+                    this.currentCharacterNumber = 0;
+                    let nextStr = this.jpnToRomanTranslate(this.typingString[this.currentTextNumber]);
+                    this.typingTextPlaced!.text = nextStr;
+                    this.typingText!.text = nextStr;
+                    this.previewText!.text = this.previewString[this.currentTextNumber];
                 } // そうでなければ文字を暗くして次の文字へ
                 else{
                     let str = "";
