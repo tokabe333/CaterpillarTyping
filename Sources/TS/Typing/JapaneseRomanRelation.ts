@@ -247,3 +247,14 @@ jpnToRoman["，"] = [","];
 jpnToRoman["．"] = ["."];
 jpnToRoman["、"] = [","];
 jpnToRoman["。"] = ["."];
+
+jpnToRoman["１"] = ["1"];
+jpnToRoman["２"] = ["2"];
+jpnToRoman["３"] = ["3"];
+jpnToRoman["４"] = ["4"];
+jpnToRoman["５"] = ["5"];
+jpnToRoman["６"] = ["6"];
+jpnToRoman["７"] = ["7"];
+jpnToRoman["８"] = ["8"];
+jpnToRoman["９"] = ["9"];
+jpnToRoman["０"] = ["0"];
