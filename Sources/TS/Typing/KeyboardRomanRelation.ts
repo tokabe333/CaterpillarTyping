@@ -30,11 +30,7 @@ keyToRoman[Phaser.Input.Keyboard.KeyCodes.W] = "w";
 keyToRoman[Phaser.Input.Keyboard.KeyCodes.X] = "x";
 keyToRoman[Phaser.Input.Keyboard.KeyCodes.Y] = "y";
 keyToRoman[Phaser.Input.Keyboard.KeyCodes.Z] = "z";
-keyToRoman[Phaser.Input.Keyboard.KeyCodes.COMMA] = ",";
-keyToRoman[Phaser.Input.Keyboard.KeyCodes.COMMA_FIREFOX] = ",";
-keyToRoman[Phaser.Input.Keyboard.KeyCodes.COMMA_FIREFOX_WINDOWS] = ",";
-keyToRoman[Phaser.Input.Keyboard.KeyCodes.MINUS] = "-";
-keyToRoman[Phaser.Input.Keyboard.KeyCodes.PERIOD] = ".";
+
 keyToRoman[Phaser.Input.Keyboard.KeyCodes.ONE] = "1";
 keyToRoman[Phaser.Input.Keyboard.KeyCodes.TWO] = "2";
 keyToRoman[Phaser.Input.Keyboard.KeyCodes.THREE] = "3";
@@ -45,3 +41,52 @@ keyToRoman[Phaser.Input.Keyboard.KeyCodes.SEVEN] = "7";
 keyToRoman[Phaser.Input.Keyboard.KeyCodes.EIGHT] = "8";
 keyToRoman[Phaser.Input.Keyboard.KeyCodes.NINE] = "9";
 keyToRoman[Phaser.Input.Keyboard.KeyCodes.ZERO] = "0";
+
+keyToRoman[Phaser.Input.Keyboard.KeyCodes.COMMA] = ",";
+keyToRoman[Phaser.Input.Keyboard.KeyCodes.COMMA_FIREFOX] = ",";
+keyToRoman[Phaser.Input.Keyboard.KeyCodes.COMMA_FIREFOX_WINDOWS] = ",";
+keyToRoman[Phaser.Input.Keyboard.KeyCodes.MINUS] = "-";
+keyToRoman[Phaser.Input.Keyboard.KeyCodes.PERIOD] = ".";
+
+keyToRoman[Phaser.Input.Keyboard.KeyCodes.SEMICOLON] = ";";
+keyToRoman[Phaser.Input.Keyboard.KeyCodes.SEMICOLON_FIREFOX] = ";";
+keyToRoman[Phaser.Input.Keyboard.KeyCodes.COLON] = ":";
+keyToRoman[Phaser.Input.Keyboard.KeyCodes.FORWARD_SLASH] = "/";
+keyToRoman[Phaser.Input.Keyboard.KeyCodes.BACK_SLASH] = "\\";
+keyToRoman[Phaser.Input.Keyboard.KeyCodes.LEFT] = "←";
+keyToRoman[Phaser.Input.Keyboard.KeyCodes.RIGHT] = "→";
+keyToRoman[Phaser.Input.Keyboard.KeyCodes.UP] = "↑";
+keyToRoman[Phaser.Input.Keyboard.KeyCodes.DOWN] = "↓";
+keyToRoman[Phaser.Input.Keyboard.KeyCodes.OPEN_BRACKET] = "[";
+keyToRoman[Phaser.Input.Keyboard.KeyCodes.CLOSED_BRACKET] = "]";
+keyToRoman[Phaser.Input.Keyboard.KeyCodes.PLUS] = "+";
+keyToRoman[Phaser.Input.Keyboard.KeyCodes.QUOTES] = "'";
+
+keyToRoman[Phaser.Input.Keyboard.KeyCodes.ENTER] = "Enter";
+keyToRoman[Phaser.Input.Keyboard.KeyCodes.SPACE] = "Space";
+keyToRoman[Phaser.Input.Keyboard.KeyCodes.BACKSPACE] = "BackSpace";
+keyToRoman[Phaser.Input.Keyboard.KeyCodes.CAPS_LOCK] = "CapsLock";
+keyToRoman[Phaser.Input.Keyboard.KeyCodes.CTRL] = "Ctrl";
+keyToRoman[Phaser.Input.Keyboard.KeyCodes.ESC] = "ESC";
+keyToRoman[Phaser.Input.Keyboard.KeyCodes.DELETE] = "Delete";
+keyToRoman[Phaser.Input.Keyboard.KeyCodes.INSERT] = "Insert";
+keyToRoman[Phaser.Input.Keyboard.KeyCodes.PAGE_UP] = "PageUp";
+keyToRoman[Phaser.Input.Keyboard.KeyCodes.PAGE_DOWN] = "PageDown";
+keyToRoman[Phaser.Input.Keyboard.KeyCodes.PRINT_SCREEN] = "PrintScrean";
+keyToRoman[Phaser.Input.Keyboard.KeyCodes.SHIFT] = "Shift";
+keyToRoman[Phaser.Input.Keyboard.KeyCodes.TAB] = "Tab";
+keyToRoman[Phaser.Input.Keyboard.KeyCodes.ALT] = "Alt";
+
+keyToRoman[Phaser.Input.Keyboard.KeyCodes.F1] = "F1";
+keyToRoman[Phaser.Input.Keyboard.KeyCodes.F2] = "F2";
+keyToRoman[Phaser.Input.Keyboard.KeyCodes.F3] = "F3";
+keyToRoman[Phaser.Input.Keyboard.KeyCodes.F4] = "F4";
+keyToRoman[Phaser.Input.Keyboard.KeyCodes.F5] = "F5";
+keyToRoman[Phaser.Input.Keyboard.KeyCodes.F6] = "F6";
+keyToRoman[Phaser.Input.Keyboard.KeyCodes.F7] = "F7";
+keyToRoman[Phaser.Input.Keyboard.KeyCodes.F8] = "F8";
+keyToRoman[Phaser.Input.Keyboard.KeyCodes.F9] = "F9";
+keyToRoman[Phaser.Input.Keyboard.KeyCodes.F10] = "F10";
+keyToRoman[Phaser.Input.Keyboard.KeyCodes.F11] = "F11";
+keyToRoman[Phaser.Input.Keyboard.KeyCodes.F12] = "F12";
+
