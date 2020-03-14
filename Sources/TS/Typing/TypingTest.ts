@@ -8,6 +8,7 @@ export class TypingTest extends Phaser.Scene {
     // 画面上に表示するテキストオブジェクト
     private previewText?: Phaser.GameObjects.Text;
     private typingText?: Phaser.GameObjects.Text;
+    private typingTextPlaced?: Phaser.GameObjects.Text;
 
     // キー入力のためのユーティリティ
     private keyDownChecker?: GetKeyDown;
@@ -27,7 +28,9 @@ export class TypingTest extends Phaser.Scene {
 
     // 背景色とフォントスタイル
     private backColor: string = "0x008d00";
-    private fontStyle: Phaser.Types.GameObjects.Text.TextStyle = { color: "white", fontSize: "60px", fontFamily: 'HG行書体'};
+    private previewFontStyle: Phaser.Types.GameObjects.Text.TextStyle = { color: "white", fontSize: "60px", fontFamily: 'HG行書体'};
+    private typingFontStyle: Phaser.Types.GameObjects.Text.TextStyle = { color: "white", fontSize: "50px", fontFamily: 'HG行書体'};
+    private typingPlacedFontStyle: Phaser.Types.GameObjects.Text.TextStyle = { color: "gray", fontSize: "50px", fontFamily: 'HG行書体'};
 
     // 現在何個目のテキストを表示しているか
     private currentTextNumber: number = 0;
@@ -46,7 +49,24 @@ export class TypingTest extends Phaser.Scene {
         this.input.keyboard.on("keydown", () => {
             let keyCode = this.keyDownChecker!.checkPuttingKey(this.input.keyboard);
             console.log(keyToRoman[keyCode!]);
-        });
+
+            // 現在入力待ちの文字と同じか
+            if(this.typingText!.text[this.currentCharacterNumber] == keyToRoman[keyCode]){
+                this.currentCharacterNumber += 1;
+                let currentStr = this.typingText!.text;
+                // 最後の文字が終了していたら次の文字列へ
+                if(this.currentCharacterNumber >= currentStr.length){
+                    
+                } // そうでなければ文字を暗くして次の文字へ
+                else{
+                    let str = "";
+                    for(let i = 0; i < this.currentCharacterNumber; i += 1){ str += " "; }
+                    str += currentStr.substring(this.currentCharacterNumber, currentStr.length);
+                    console.log("str : "+str);
+                    this.typingText!.text = str;
+                } //End_Else 
+            } //End_If
+        }); //End_Event
     } //End_Method
 
     // アセットのロード
@@ -57,8 +77,9 @@ export class TypingTest extends Phaser.Scene {
     // ゲームオブジェクトの描写
     create() {
         this.cameras.main.setBackgroundColor(this.backColor);
-        this.previewText = this.add.text(400, 300, this.previewString[0], this.fontStyle).setOrigin(0.5);
-        this.typingText = this.add.text(400, 250, this.jpnToRomanTranslate(this.typingString[0]) , this.fontStyle).setOrigin(0.5);
+        this.previewText = this.add.text(400, 300, this.previewString[0], this.previewFontStyle).setOrigin(0.5, 0.5);
+        this.typingTextPlaced = this.add.text(400, 250, this.jpnToRomanTranslate(this.typingString[0]), this.typingPlacedFontStyle).setOrigin(0.5, 0.5);
+        this.typingText = this.add.text(400, 250, this.jpnToRomanTranslate(this.typingString[0]) , this.typingFontStyle).setOrigin(0.5, 0.5);
     } //End_Method
 
     // ゲームの各フレーム更新毎に呼びだされる

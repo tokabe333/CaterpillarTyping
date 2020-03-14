@@ -159,14 +159,14 @@ export class GetKeyDown {
         this.KeyInputs[39] = this.Key9;
         this.KeyInputs[40] = this.Key0;
         this.KeyInputs[41] = this.KeySemicolon;
-        this.KeyInputs[41] = this.KeySemicolonFirefox;
-        this.KeyInputs[41] = this.KeyColon;
-        this.KeyInputs[41] = this.KeyForwardSlash;
-        this.KeyInputs[41] = this.KeyBackSlash;
-        this.KeyInputs[41] = this.KeyLeft;
-        this.KeyInputs[41] = this.KeyRight;
-        this.KeyInputs[41] = this.KeyUp;
-        this.KeyInputs[41] = this.KeyDown;
+        this.KeyInputs[42] = this.KeySemicolonFirefox;
+        this.KeyInputs[43] = this.KeyColon;
+        this.KeyInputs[44] = this.KeyForwardSlash;
+        this.KeyInputs[45] = this.KeyBackSlash;
+        this.KeyInputs[46] = this.KeyLeft;
+        this.KeyInputs[47] = this.KeyRight;
+        this.KeyInputs[48] = this.KeyUp;
+        this.KeyInputs[49] = this.KeyDown;
     } //End_Method
 
     // 何かしらのキーが入力されたとき，それがどのキーか判別する
