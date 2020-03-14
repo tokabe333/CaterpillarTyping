@@ -1,8 +1,9 @@
 import * as Phaser from "phaser";
 import { jpnToRoman } from "./JapaneseRomanRelation";
 import { keyToRoman } from "./KeyboardRomanRelation";
+import { GetKeyDown } from "./GetKeyDownInterface";
 
-export class TypingTest extends Phaser.Scene {
+export class TypingTest extends Phaser.Scene implements GetKeyDown {
     // --------------- Private変数(undifined可) ---------------
     // 画面上に表示するテキストオブジェクト
     private previewText?: Phaser.GameObjects.Text;

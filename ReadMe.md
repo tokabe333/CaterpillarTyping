@@ -107,8 +107,8 @@ https://qiita.com/alfas/items/539ade65926deb530e0e
 #### TypeScriptの変数の末尾の"!"(エクスクラメーション/感嘆符)の意味
 https://qiita.com/zigenin/items/364264a6cf635b962542
 
-#### タイピングガチ勢が本格的タイピングゲーム（ローマ字入力）を実装してみた
-https://qiita.com/Arthur_Lugh/items/43b61877819e402c50d6
+#### TypeScriptの言語仕様書をIntroductionだけ読んでみた
+https://qiita.com/pebblip/items/f04978415929b623108c
 
 <br><br>
 
@@ -134,9 +134,14 @@ https://gpnotes.hatenablog.jp/entry/2018/11/22/160002
 #### Phaser3 メモ
 https://nktk-tech.com/memo/phaser3/phaser3.html
 
-
 #### 公式チュートリアル
 https://phaser.io/learn/community-tutorials
 
 #### Phaser3 Documentation
 https://photonstorm.github.io/phaser3-docs/
+
+<br><br>
+
+## 備忘録 (その他)
+#### タイピングガチ勢が本格的タイピングゲーム（ローマ字入力）を実装してみた
+https://qiita.com/Arthur_Lugh/items/43b61877819e402c50d6
