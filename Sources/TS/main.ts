@@ -2,7 +2,7 @@
 import * as Phaser from "phaser";
 import { GameState } from "./RPG_Tutorial/mainState";
 import { Preload} from "./RPG_Tutorial/Preload";
-import { TypingTest } from "./Typing/TypingTest";
+import { TypingTest } from "./Typing/TypingGame";
 
 
 // Phaser3のゲームクラスの記述（Phaser.Gameクラスを継承したMainクラスの記述）
