@@ -58,7 +58,7 @@ export class TypingTest extends Phaser.Scene {
     create() {
         this.cameras.main.setBackgroundColor(this.backColor);
         this.previewText = this.add.text(400, 300, this.previewString[0], this.fontStyle).setOrigin(0.5);
-        this.typingText = this.add.text(400, 250, this.typingString[0], this.fontStyle).setOrigin(0.5);
+        this.typingText = this.add.text(400, 250, this.jpnToRomanTranslate(this.typingString[0]) , this.fontStyle).setOrigin(0.5);
     } //End_Method
 
     // ゲームの各フレーム更新毎に呼びだされる
@@ -67,5 +67,14 @@ export class TypingTest extends Phaser.Scene {
     } //End_Method
 
     // --------------- 自作メソッド ---------------
+
+    // ひらがなをローマ字に変換する
+    private jpnToRomanTranslate(jpn: string): string{
+        let roman = "";
+        for(let i = 0; i < jpn.length; ++i){
+            roman += jpnToRoman[jpn[i]][0];
+        } //End_For
+        return roman;
+    } //End_Method
 } //End_Class
 
