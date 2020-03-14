@@ -5,40 +5,40 @@ import * as Phaser from "phaser";
 // キー入力イベントを提供するクラス
 export class GetKeyDown {
     // キーボード入力取得用キーオブジェクト
-    protected KeyA: Phaser.Input.Keyboard.Key;
-    protected KeyB: Phaser.Input.Keyboard.Key;
-    protected KeyC: Phaser.Input.Keyboard.Key;
-    protected KeyD: Phaser.Input.Keyboard.Key;
-    protected KeyE: Phaser.Input.Keyboard.Key;
-    protected KeyF: Phaser.Input.Keyboard.Key;
-    protected KeyG: Phaser.Input.Keyboard.Key;
-    protected KeyH: Phaser.Input.Keyboard.Key;
-    protected KeyI: Phaser.Input.Keyboard.Key;
-    protected KeyJ: Phaser.Input.Keyboard.Key;
-    protected KeyK: Phaser.Input.Keyboard.Key;
-    protected KeyL: Phaser.Input.Keyboard.Key;
-    protected KeyM: Phaser.Input.Keyboard.Key;
-    protected KeyN: Phaser.Input.Keyboard.Key;
-    protected KeyO: Phaser.Input.Keyboard.Key;
-    protected KeyP: Phaser.Input.Keyboard.Key;
-    protected KeyQ: Phaser.Input.Keyboard.Key;
-    protected KeyR: Phaser.Input.Keyboard.Key;
-    protected KeyS: Phaser.Input.Keyboard.Key;
-    protected KeyT: Phaser.Input.Keyboard.Key;
-    protected KeyU: Phaser.Input.Keyboard.Key;
-    protected KeyV: Phaser.Input.Keyboard.Key;
-    protected KeyW: Phaser.Input.Keyboard.Key;
-    protected KeyX: Phaser.Input.Keyboard.Key;
-    protected KeyY: Phaser.Input.Keyboard.Key;
-    protected KeyZ: Phaser.Input.Keyboard.Key;
-    protected KeyMinus: Phaser.Input.Keyboard.Key;
-    protected KeyComma: Phaser.Input.Keyboard.Key;
-    protected KeyCommaFirefox: Phaser.Input.Keyboard.Key;
-    protected KeyCommaForefoxWindows: Phaser.Input.Keyboard.Key;
-    protected KeyPeriod: Phaser.Input.Keyboard.Key;
+    public KeyA: Phaser.Input.Keyboard.Key;
+    public KeyB: Phaser.Input.Keyboard.Key;
+    public KeyC: Phaser.Input.Keyboard.Key;
+    public KeyD: Phaser.Input.Keyboard.Key;
+    public KeyE: Phaser.Input.Keyboard.Key;
+    public KeyF: Phaser.Input.Keyboard.Key;
+    public KeyG: Phaser.Input.Keyboard.Key;
+    public KeyH: Phaser.Input.Keyboard.Key;
+    public KeyI: Phaser.Input.Keyboard.Key;
+    public KeyJ: Phaser.Input.Keyboard.Key;
+    public KeyK: Phaser.Input.Keyboard.Key;
+    public KeyL: Phaser.Input.Keyboard.Key;
+    public KeyM: Phaser.Input.Keyboard.Key;
+    public KeyN: Phaser.Input.Keyboard.Key;
+    public KeyO: Phaser.Input.Keyboard.Key;
+    public KeyP: Phaser.Input.Keyboard.Key;
+    public KeyQ: Phaser.Input.Keyboard.Key;
+    public KeyR: Phaser.Input.Keyboard.Key;
+    public KeyS: Phaser.Input.Keyboard.Key;
+    public KeyT: Phaser.Input.Keyboard.Key;
+    public KeyU: Phaser.Input.Keyboard.Key;
+    public KeyV: Phaser.Input.Keyboard.Key;
+    public KeyW: Phaser.Input.Keyboard.Key;
+    public KeyX: Phaser.Input.Keyboard.Key;
+    public KeyY: Phaser.Input.Keyboard.Key;
+    public KeyZ: Phaser.Input.Keyboard.Key;
+    public KeyMinus: Phaser.Input.Keyboard.Key;
+    public KeyComma: Phaser.Input.Keyboard.Key;
+    public KeyCommaFirefox: Phaser.Input.Keyboard.Key;
+    public KeyCommaForefoxWindows: Phaser.Input.Keyboard.Key;
+    public KeyPeriod: Phaser.Input.Keyboard.Key;
 
     // キーボード入力取得用オブジェクトをまとめる配列
-    protected KeyInputs: Phaser.Input.Keyboard.Key[];
+    public KeyInputs: Phaser.Input.Keyboard.Key[];
 
     // コンストラクタ
     constructor(keyboard: Phaser.Input.Keyboard.KeyboardPlugin){
@@ -111,7 +111,7 @@ export class GetKeyDown {
     } //End_Method
 
     // 何かしらのキーが入力されたとき，それがどのキーか判別する
-    checkPuttingKey(a: Phaser.Input.Keyboard.KeyboardPlugin): number{
+    public checkPuttingKey(a: Phaser.Input.Keyboard.KeyboardPlugin): number{
         for(let i = 0; i < this.KeyInputs.length; ++i){
             if(Phaser.Input.Keyboard.JustDown(this.KeyInputs[i])){
                 return this.KeyInputs[i].keyCode;

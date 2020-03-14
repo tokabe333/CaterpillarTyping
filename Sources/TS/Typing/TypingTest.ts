@@ -1,13 +1,17 @@
 import * as Phaser from "phaser";
 import { jpnToRoman } from "./JapaneseRomanRelation";
 import { keyToRoman } from "./KeyboardRomanRelation";
-import { GetKeyDown } from "./GetKeyDownInterface";
+import { GetKeyDown } from "./GetKeyDown";
 
-export class TypingTest extends Phaser.Scene implements GetKeyDown {
+export class TypingTest extends Phaser.Scene {
     // --------------- Private変数(undifined可) ---------------
     // 画面上に表示するテキストオブジェクト
     private previewText?: Phaser.GameObjects.Text;
     private typingText?: Phaser.GameObjects.Text;
+
+    // キー入力のためのユーティリティ
+    private keyDownChecker?: GetKeyDown;
+
 
     // --------------- Private変数(undifined不可) ---------------
     // タイピング画面に表示するテキスト
@@ -30,15 +34,19 @@ export class TypingTest extends Phaser.Scene implements GetKeyDown {
     // 現在何個目の文字を入力しているか
     private currentCharacterNumber: number = 0;
 
+
     // --------------- Phaser用メソッド ---------------
 
     // クラスのメンバ変数の初期化
     init() {
+        // キー入力の判定をするユーティリティのインスタンス生成
+        this.keyDownChecker = new GetKeyDown(this.input.keyboard);
+
         // 入力時イベント
         this.input.keyboard.on("keydown", () => {
-            alert("うんち");
+            let keyCode = this.keyDownChecker!.checkPuttingKey(this.input.keyboard);
+            console.log(keyToRoman[keyCode!]);
         });
-        var a = this.input.keyboard;
     } //End_Method
 
     // アセットのロード
@@ -60,3 +68,4 @@ export class TypingTest extends Phaser.Scene implements GetKeyDown {
 
     // --------------- 自作メソッド ---------------
 } //End_Class
+
