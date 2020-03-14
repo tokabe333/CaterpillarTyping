@@ -4,7 +4,7 @@ export class Preload extends Phaser.Scene {
   private startText?: Phaser.GameObjects.Text; // 追加
 
   private bkColor: string = '0x00fc93'; // 追加
-  private fontStyle: Phaser.Types.GameObjects.Text.TextStyle = { color: 'red', fontSize: '70px' }; //追加
+  private fontStyle: Phaser.Types.GameObjects.Text.TextStyle = { color: 'black', fontSize: '70px', fontFamily:  'HG行書体'}; //追加
 
   init() {
     console.log("Preloading");

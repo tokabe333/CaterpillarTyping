@@ -56,9 +56,15 @@ export class TypingTest extends Phaser.Scene {
                 let currentStr = this.typingText!.text;
                 // 最後の文字が終了していたら次の文字列へ
                 if(this.currentCharacterNumber >= currentStr.length){
-                    // 次の文字列へ
                     this.currentTextNumber += 1;
                     this.currentCharacterNumber = 0;
+
+                    // 最後の文字列だったら終了
+                    if(this.currentTextNumber >= this.previewString.length){
+                        this.scene.start("result");
+                    } //End_If
+
+                    // 次の文字列へ
                     let nextStr = this.jpnToRomanTranslate(this.typingString[this.currentTextNumber]);
                     this.typingTextPlaced!.text = nextStr;
                     this.typingText!.text = nextStr;

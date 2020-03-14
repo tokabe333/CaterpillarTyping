@@ -6,7 +6,7 @@ export class Result extends Phaser.Scene {
 
   // --------------- Private変数(undifined不可) ---------------
   private bkColor: string = '0x00fc93'; // 追加
-  private fontStyle: Phaser.Types.GameObjects.Text.TextStyle = { color: 'red', fontSize: '70px' }; //追加
+  private fontStyle: Phaser.Types.GameObjects.Text.TextStyle = { color: 'black', fontSize: '70px', fontFamily:  'HG行書体'}; //追加
 
 
   // --------------- Phaser用メソッド ---------------
