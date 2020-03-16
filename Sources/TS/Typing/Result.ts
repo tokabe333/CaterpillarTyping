@@ -1,5 +1,6 @@
 import * as Phaser from "phaser";
 
+
 export class Result extends Phaser.Scene {
   // --------------- Private変数(undifined可) ---------------
   private startText?: Phaser.GameObjects.Text; // 追加

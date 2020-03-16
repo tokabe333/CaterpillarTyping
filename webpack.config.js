@@ -6,7 +6,7 @@ module.exports = [{
         main: "./Sources/TS/main.ts",
     },
     output  : {
-        path        :  __dirname + "/Sources/JS/",
+        path        :  __dirname + "/Sources/HTML/",
         filename    : "bundle.js",
         //publicPath  : "/js/",
     },
