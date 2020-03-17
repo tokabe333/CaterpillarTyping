@@ -1,7 +1,5 @@
 import * as Phaser from "phaser";
 
-// ガバなので使わない
-
 // キー入力イベントを提供するクラス
 export class GetKeyDown {
     // キーボード入力取得用キーオブジェクト
