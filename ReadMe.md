@@ -92,6 +92,8 @@
 2. npm run autobuild を実行するとPhaserもSASSも勝手に自動コンパイルされる
 3. コマンドプロンプトをつけっぱなしにして編集するだけ！おしまい！
 
+<br><br>
+
 ## 備忘録 (環境構築)
 #### TypeScript + Node.js プロジェクトのはじめかた2019
 https://qiita.com/notakaos/items/3bbd2293e2ff286d9f49
