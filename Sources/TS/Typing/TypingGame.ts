@@ -2,6 +2,7 @@ import * as Phaser from "phaser";
 import { jpnToRoman } from "./JapaneseRomanRelation";
 import { keyToRoman } from "./KeyboardRomanRelation";
 import { GetKeyDown } from "./GetKeyDown";
+import { JapanseseInputUtility } from "./JapaneseInputUtility";
 
 export class TypingTest extends Phaser.Scene {
     // --------------- Private変数(undifined可) ---------------
@@ -12,6 +13,9 @@ export class TypingTest extends Phaser.Scene {
 
     // キー入力のためのユーティリティ
     private keyDownChecker?: GetKeyDown;
+
+    // 入力されたキーとひらがなの正誤判定のユーティリティ
+    private jpnIsCorrectChecker?: JapanseseInputUtility;
 
 
     // --------------- Private変数(undifined不可) ---------------
@@ -45,6 +49,12 @@ export class TypingTest extends Phaser.Scene {
         // キー入力の判定をするユーティリティのインスタンス生成
         this.keyDownChecker = new GetKeyDown(this.input.keyboard);
 
+        // 正誤判定のユーティリティインスタンス生成
+        this.jpnIsCorrectChecker = new JapanseseInputUtility();
+    } //End_Method
+
+    // アセットのロード
+    preload() {
         // 入力時イベント
         this.input.keyboard.on("keydown", () => {
             let keyCode = this.keyDownChecker!.checkPuttingKey(this.input.keyboard);
@@ -58,7 +68,7 @@ export class TypingTest extends Phaser.Scene {
                 if(this.currentCharacterNumber >= currentStr.length){
                     this.currentTextNumber += 1;
                     this.currentCharacterNumber = 0;
-
+                    
                     // 最後の文字列だったら終了
                     if(this.currentTextNumber >= this.previewString.length){
                         this.scene.start("result");
@@ -79,11 +89,6 @@ export class TypingTest extends Phaser.Scene {
                 } //End_Else 
             } //End_If
         }); //End_Event
-    } //End_Method
-
-    // アセットのロード
-    preload() {
-
     } //End_Method
 
     // ゲームオブジェクトの描写

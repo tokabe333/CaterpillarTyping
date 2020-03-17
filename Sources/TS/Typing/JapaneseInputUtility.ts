@@ -11,10 +11,10 @@ export class JapanseseInputUtility{
         let i = 0;
 
         while(i < jpn.length){
-            uni += jpn[i];
+            uni = jpn[i];
             // とりあえず2文字読ませる
-            if(i + 1 < str.length){
-                bi = str[i] + str[i + 1];
+            if(i + 1 < jpn.length){
+                bi = jpn[i] + jpn[i + 1];
             } // 例外
             else { bi = ""; }
 
@@ -37,12 +37,27 @@ export class JapanseseInputUtility{
         let typing: string[][] = new Array();
         for(let i = 0; i < hiragana.length; ++i){ typing[i] = new Array(); }
 
-        
+        let s: string = "";     // 現在見てるひらがな
+    let ns: string = "";    // 1文字先のひらがな("っ"や"ん"の判定に使う)
+
+        for(let i = 0; i < hiragana.length; ++i){
+            s = hiragana[i];
+            if(i + 1 < hiragana.length){ ns = hiragana[i + 1]; }
+            else { ns = ""; }
+
+            // 作業用
+            let tmp:string[] = new Array();
+
+            // "ん"の処理
+            if(s === "ん"){
+
+            } //End_If
+        } //End_For
+
         return typing;
     } //End_Method
 
-    // コンストラクタ(Phaserのキーボード入力プラグインをもらう)
-    constructor(keyInputs: Phaser.Input.Keyboard.KeyboardPlugin){
-
-    }
+    // // コンストラクタ(Phaserのキーボード入力プラグインをもらう)
+    // constructor(keyInputs: Phaser.Input.Keyboard.KeyboardPlugin){
+    // } //End_Constructor
 } //End_Class
