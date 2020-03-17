@@ -20,6 +20,7 @@
   "homepage": "https://github.com/tokabe333/CterpillarTyping#readme",
   "devDependencies": {
     "awesome-typescript-loader": "^5.2.1",
+    "node-sass": "^4.13.1",
     "phaser": "^3.21.0",
     "source-map-loader": "^0.2.4",
     "ts-loader": "^6.2.1",
