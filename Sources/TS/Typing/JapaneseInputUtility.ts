@@ -35,10 +35,9 @@ export class JapanseseInputUtility{
     // "ちゃ" の場合と "ち" + "ゃ" の場合などを組み合わせたタイピングリストをつくる
     public constructTypingSentence(hiragana: string[]): string[][]{
         let typing: string[][] = new Array();
-        for(let i = 0; i < hiragana.length; ++i){ typing[i] = new Array(); }
 
         let s: string = "";     // 現在見てるひらがな
-    let ns: string = "";    // 1文字先のひらがな("っ"や"ん"の判定に使う)
+        let ns: string = "";    // 1文字先のひらがな("っ"や"ん"の判定に使う)
 
         for(let i = 0; i < hiragana.length; ++i){
             s = hiragana[i];
@@ -73,20 +72,20 @@ export class JapanseseInputUtility{
                 for(let next in nexts){ hash[next] = true; }
                 for(let h in hash){ tmp.push(h); }
                 // 元の"っ"の入力
-                for(let l in ltu){ tmp.push(l); }
+                for(let l in ltu){ tmp.push(ltu[l]); }
             } // "ちゃ"などの2文字のやーつ
             else if(s.length == 2){
                 // 元々の入力を追加
-                for(let ngo in jpnToRoman[s]){ tmp.push(ngo); }
+                for(let i = 0; i < jpnToRoman[s].length; ++i){ tmp.push(jpnToRoman[s][i]); }
                 // "ち"+"ゃ"のように分割する
-                for(let first in jpnToRoman[s[0]]){
-                    for(let second in jpnToRoman[s[1]]){
-                        tmp.push(first + second);
+                for(let i = 0; i < jpnToRoman[s[0]].length; ++i){
+                    for(let j = 0; j < jpnToRoman[s[1]].length; ++j){
+                        tmp.push(jpnToRoman[s[0]][i] + jpnToRoman[s[1]][j]);
                     } //End_For
                 } //End_For
             } //それ以外の場合はそのままでOK
             else{
-                for(let ngo in jpnToRoman[s]){ tmp.push(ngo); }
+                for(let i = 0; i < jpnToRoman[s].length; ++i){ tmp.push(jpnToRoman[s][i]); }
             } //End_IfElse
             typing.push(tmp);
         } //End_For

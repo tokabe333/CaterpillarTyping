@@ -41,6 +41,11 @@ export class TypingTest extends Phaser.Scene {
     // 現在何個目の文字を入力しているか
     private currentCharacterNumber: number = 0;
 
+    // 現在表示している日本語を1文字or2文字で分割したやつ "や","きゅ","う","み","ん"
+    private splittedHiragana: string[] = new Array();
+    // ↑のひらがなをもとに作成した正解のローマ字入力パターン
+    private correctInputRomans: string[][] = new Array();
+
 
     // --------------- Phaser用メソッド ---------------
 
@@ -74,8 +79,13 @@ export class TypingTest extends Phaser.Scene {
                         this.scene.start("result");
                     } //End_If
 
-                    // 次の文字列へ
-                    let nextStr:string = this.jpnToRomanTranslate(this.jpnInputUtil!.parseHiraganaSentence(this.typingString[this.currentTextNumber]));
+                    // 次の文字列
+                    let nextStr = this.setHiraganaAndPreviewRoman(this.typingString[this.currentTextNumber]);
+                    console.log("splitted:", this.splittedHiragana);
+                    console.log("correct:", this.correctInputRomans);
+                    console.log();
+
+                    // 次の文字列を表示
                     this.typingTextPlaced!.text = nextStr;
                     this.typingText!.text = nextStr;
                     this.previewText!.text = this.previewString[this.currentTextNumber];
@@ -93,12 +103,18 @@ export class TypingTest extends Phaser.Scene {
 
     // ゲームオブジェクトの描写
     create() {
+        // 表示関係
         this.cameras.main.setBackgroundColor(this.backColor);
         this.previewText = this.add.text(400, 300, this.previewString[0], this.previewFontStyle).setOrigin(0.5, 0.5);
 
-        let str:string = this.jpnToRomanTranslate(this.jpnInputUtil!.parseHiraganaSentence(this.typingString[0]));
-        this.typingTextPlaced = this.add.text(400, 250, str, this.typingPlacedFontStyle).setOrigin(0.5, 0.5);
-        this.typingText = this.add.text(400, 250, str , this.typingFontStyle).setOrigin(0.5, 0.5);
+        // タイピング用のローマ字関係
+        let preview: string = this.setHiraganaAndPreviewRoman(this.typingString[0]);
+        console.log("splitted:", this.splittedHiragana);
+        console.log("correct:", this.correctInputRomans);
+        console.log();
+
+        this.typingTextPlaced = this.add.text(400, 250, preview, this.typingPlacedFontStyle).setOrigin(0.5, 0.5);
+        this.typingText = this.add.text(400, 250, preview, this.typingFontStyle).setOrigin(0.5, 0.5);
     } //End_Method
 
     // ゲームの各フレーム更新毎に呼びだされる
@@ -115,6 +131,24 @@ export class TypingTest extends Phaser.Scene {
             roman += jpnToRoman[jpn[i]][0];
         } //End_For
         return roman;
+    } //End_Method
+
+    // jpnInputUtilで分割されたひらがなを元に初期表示用のローマ字列を生成する
+    private splittedHiraganaToViewingRoman(hiragana: string[]): string{
+        let str: string = "";
+        for(let i = 0; i < hiragana.length; ++i){
+            str += jpnToRoman[hiragana[i]][0];
+        } //End_For
+        return str;
+    } //End_Method
+
+    // jpnInputUtilを使って次の入力文字の正解を作っておく
+    // returnは初期表示用ローマ字
+    private setHiraganaAndPreviewRoman(typingHiragana: string): string{
+        this.splittedHiragana = this.jpnInputUtil!.parseHiraganaSentence(typingHiragana);
+        this.correctInputRomans = this.jpnInputUtil!.constructTypingSentence(this.splittedHiragana);
+        let previewRoman:string = this.splittedHiraganaToViewingRoman(this.splittedHiragana);
+        return previewRoman;
     } //End_Method
 } //End_Class
 
