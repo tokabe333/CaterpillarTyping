@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "webpack -d --progress --colors --watch",
-    "start": "webpack-dev-server --content-base Sources/HTML"
+    "start": "webpack-dev-server --content-base Sources/HTML",
+    "sass": "node-sass Sources/CSS/ --output Sources/CSS --output-style compressed --watch --source-map true"
   },
   "repository": {
     "type": "git",
