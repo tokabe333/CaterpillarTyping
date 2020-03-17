@@ -40,11 +40,15 @@ export class TypingTest extends Phaser.Scene {
     private currentTextNumber: number = 0;
     // 現在何個目の文字を入力しているか
     private currentCharacterNumber: number = 0;
+    // 現在入力している文字の中で何文字目か
+    private currentCharacterNumberofCurrentInput: number = 0;
+    // 現在の文章に対して，これまで入力した正解キー
+    private typedKeysFromCurrentText: string = "";
 
     // 現在表示している日本語を1文字or2文字で分割したやつ "や","きゅ","う","み","ん"
     private splittedHiragana: string[] = new Array();
     // ↑のひらがなをもとに作成した正解のローマ字入力パターン
-    private correctInputRomans: string[][] = new Array();
+    private correctInputRomans: {unti:string, unpi:boolean}[][] = new Array();
 
 
     // --------------- Phaser用メソッド ---------------
@@ -94,7 +98,6 @@ export class TypingTest extends Phaser.Scene {
                     let str = "";
                     for(let i = 0; i < this.currentCharacterNumber; i += 1){ str += " "; }
                     str += currentStr.substring(this.currentCharacterNumber, currentStr.length);
-                    console.log("str : "+str);
                     this.typingText!.text = str;
                 } //End_Else 
             } //End_If
@@ -150,5 +153,11 @@ export class TypingTest extends Phaser.Scene {
         let previewRoman:string = this.splittedHiraganaToViewingRoman(this.splittedHiragana);
         return previewRoman;
     } //End_Method
+
+    // 入力された文字が正しいか
+    // return 
+    private isCorrectRomanInput(keycode: number): number{
+
+    }
 } //End_Class
 
