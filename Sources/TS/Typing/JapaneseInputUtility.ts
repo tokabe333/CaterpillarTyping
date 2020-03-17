@@ -1,6 +1,5 @@
 import * as Phaser from "phaser";
 import { jpnToRoman } from "./JapaneseRomanRelation";
-const _ = lodash;
 
 // ひらがなとローマ字の対応が複数あるためそのへんをいい感じにする機能の提供
 export class JapanseseInputUtility{
@@ -61,14 +60,35 @@ export class JapanseseInputUtility{
                 else { isValidSingleN = false; }
 
                 let nn:string[] = jpnToRoman["ん"];
-                for(let i = 0; i < jpnToRoman["ん"].length; ++i){
-                    if(!isValidSingleN && jpnToRoman["ん"][i] === "ん"){ continue; }
-                    tmp.push(jpnToRoman["ん"][i]);
+                for(let i = 0; i < nn.length; ++i){
+                    if(!isValidSingleN && nn[i] === "n"){ continue; }
+                    tmp.push(nn[i]);
                 } //End_For
             } // "っ"の処理
             else if(s === "っ"){
-                
-            }
+                let ltu:string[] = jpnToRoman["っ"];
+                let nexts:string[] = jpnToRoman[ns];
+                let hash:{[key: string]:boolean} = {};
+                // 次の文字の子音
+                for(let next in nexts){ hash[next] = true; }
+                for(let h in hash){ tmp.push(h); }
+                // 元の"っ"の入力
+                for(let l in ltu){ tmp.push(l); }
+            } // "ちゃ"などの2文字のやーつ
+            else if(s.length == 2){
+                // 元々の入力を追加
+                for(let ngo in jpnToRoman[s]){ tmp.push(ngo); }
+                // "ち"+"ゃ"のように分割する
+                for(let first in jpnToRoman[s[0]]){
+                    for(let second in jpnToRoman[s[1]]){
+                        tmp.push(first + second);
+                    } //End_For
+                } //End_For
+            } //それ以外の場合はそのままでOK
+            else{
+                for(let ngo in jpnToRoman[s]){ tmp.push(ngo); }
+            } //End_IfElse
+            typing.push(tmp);
         } //End_For
 
         return typing;
