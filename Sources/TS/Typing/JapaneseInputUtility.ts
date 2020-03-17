@@ -1,5 +1,6 @@
 import * as Phaser from "phaser";
 import { jpnToRoman } from "./JapaneseRomanRelation";
+const _ = lodash;
 
 // ひらがなとローマ字の対応が複数あるためそのへんをいい感じにする機能の提供
 export class JapanseseInputUtility{
@@ -50,8 +51,24 @@ export class JapanseseInputUtility{
 
             // "ん"の処理
             if(s === "ん"){
+                let isValidSingleN; // 一文字でnと判定してもよいか
+                // 文末ならば nn or xn
+                if(i == hiragana.length){ isValidSingleN = false; }
+                // 一つ後ろが母音，ナ行，ヤ行 → nn or xn
+                else if(ns == "あ" || ns == "い" || ns == "う" || ns == "え" || ns == "お" || ns == "な" ||ns == "に" || ns == "ぬ" || ns == "ね" || ns == "の" || ns == "や" || ns == "ゆ" || ns == "よ"){
+                    isValidSingleN = false;
+                } // それ以外なら n でOK
+                else { isValidSingleN = false; }
 
-            } //End_If
+                let nn:string[] = jpnToRoman["ん"];
+                for(let i = 0; i < jpnToRoman["ん"].length; ++i){
+                    if(!isValidSingleN && jpnToRoman["ん"][i] === "ん"){ continue; }
+                    tmp.push(jpnToRoman["ん"][i]);
+                } //End_For
+            } // "っ"の処理
+            else if(s === "っ"){
+                
+            }
         } //End_For
 
         return typing;

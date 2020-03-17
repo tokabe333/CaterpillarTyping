@@ -15,7 +15,7 @@ export class TypingTest extends Phaser.Scene {
     private keyDownChecker?: GetKeyDown;
 
     // 入力されたキーとひらがなの正誤判定のユーティリティ
-    private jpnIsCorrectChecker?: JapanseseInputUtility;
+    private jpnInputUtil?: JapanseseInputUtility;
 
 
     // --------------- Private変数(undifined不可) ---------------
@@ -50,7 +50,7 @@ export class TypingTest extends Phaser.Scene {
         this.keyDownChecker = new GetKeyDown(this.input.keyboard);
 
         // 正誤判定のユーティリティインスタンス生成
-        this.jpnIsCorrectChecker = new JapanseseInputUtility();
+        this.jpnInputUtil = new JapanseseInputUtility();
     } //End_Method
 
     // アセットのロード
@@ -75,7 +75,7 @@ export class TypingTest extends Phaser.Scene {
                     } //End_If
 
                     // 次の文字列へ
-                    let nextStr = this.jpnToRomanTranslate(this.typingString[this.currentTextNumber]);
+                    let nextStr:string = this.jpnToRomanTranslate(this.jpnInputUtil!.parseHiraganaSentence(this.typingString[this.currentTextNumber]));
                     this.typingTextPlaced!.text = nextStr;
                     this.typingText!.text = nextStr;
                     this.previewText!.text = this.previewString[this.currentTextNumber];
@@ -95,8 +95,10 @@ export class TypingTest extends Phaser.Scene {
     create() {
         this.cameras.main.setBackgroundColor(this.backColor);
         this.previewText = this.add.text(400, 300, this.previewString[0], this.previewFontStyle).setOrigin(0.5, 0.5);
-        this.typingTextPlaced = this.add.text(400, 250, this.jpnToRomanTranslate(this.typingString[0]), this.typingPlacedFontStyle).setOrigin(0.5, 0.5);
-        this.typingText = this.add.text(400, 250, this.jpnToRomanTranslate(this.typingString[0]) , this.typingFontStyle).setOrigin(0.5, 0.5);
+
+        let str:string = this.jpnToRomanTranslate(this.jpnInputUtil!.parseHiraganaSentence(this.typingString[0]));
+        this.typingTextPlaced = this.add.text(400, 250, str, this.typingPlacedFontStyle).setOrigin(0.5, 0.5);
+        this.typingText = this.add.text(400, 250, str , this.typingFontStyle).setOrigin(0.5, 0.5);
     } //End_Method
 
     // ゲームの各フレーム更新毎に呼びだされる
@@ -107,7 +109,7 @@ export class TypingTest extends Phaser.Scene {
     // --------------- 自作メソッド ---------------
 
     // ひらがなをローマ字に変換する
-    private jpnToRomanTranslate(jpn: string): string{
+    private jpnToRomanTranslate(jpn: string[]): string{
         let roman = "";
         for(let i = 0; i < jpn.length; ++i){
             roman += jpnToRoman[jpn[i]][0];
