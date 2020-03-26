@@ -85,8 +85,8 @@
 
 ### PhaserとかSASSとかまとめて自動で動かす
 **環境構築**
-- npm install npm-run-all -D
-**まとめて自動コンパイル**
+- npm install npm-run-all -D <br>
+**まとめて自動コンパイル** <br>
 基本的に↑のPhaserとかSASSと同じ
 1. コマンドプロンプトを立ち上げてプロジェクトのルートディレクトリに移動
 2. npm run autobuild を実行するとPhaserもSASSも勝手に自動コンパイルされる
