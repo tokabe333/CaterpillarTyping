@@ -4,6 +4,9 @@ import { keyToRoman } from "./KeyboardRomanRelation";
 import { GetKeyDown } from "./GetKeyDown";
 import { JapanseseInputUtility } from "./JapaneseInputUtility";
 
+// 可能なタイピングの種類
+export interface TypingRoman{roman: string, isTyped: boolean};
+
 export class TypingTest extends Phaser.Scene {
     // --------------- Private変数(undifined可) ---------------
     // 画面上に表示するテキストオブジェクト

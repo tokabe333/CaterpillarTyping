@@ -1,5 +1,6 @@
 import * as Phaser from "phaser";
 import { jpnToRoman } from "./JapaneseRomanRelation";
+import { TypingRoman } from "./TypingGame";
 
 // ひらがなとローマ字の対応が複数あるためそのへんをいい感じにする機能の提供
 export class JapanseseInputUtility{
@@ -33,8 +34,8 @@ export class JapanseseInputUtility{
     } //End_Method
 
     // "ちゃ" の場合と "ち" + "ゃ" の場合などを組み合わせたタイピングリストをつくる
-    public constructTypingSentence(hiragana: string[]): string[][]{
-        let typing: string[][] = new Array();
+    public constructTypingSentence(hiragana: string[]): TypingRoman[][]{
+        let typing: TypingRoman[][] = new Array();
 
         let s: string = "";     // 現在見てるひらがな
         let ns: string = "";    // 1文字先のひらがな("っ"や"ん"の判定に使う)
@@ -45,7 +46,7 @@ export class JapanseseInputUtility{
             else { ns = ""; }
 
             // 作業用
-            let tmp:string[] = new Array();
+            let tmp: TypingRoman[] = new Array();
 
             // "ん"の処理
             if(s === "ん"){
@@ -61,7 +62,7 @@ export class JapanseseInputUtility{
                 let nn:string[] = jpnToRoman["ん"];
                 for(let i = 0; i < nn.length; ++i){
                     if(!isValidSingleN && nn[i] === "n"){ continue; }
-                    tmp.push(nn[i]);
+                    tmp.push({roman: nn[i], isTyped: false});
                 } //End_For
             } // "っ"の処理
             else if(s === "っ"){
@@ -70,22 +71,22 @@ export class JapanseseInputUtility{
                 let hash:{[key: string]:boolean} = {};
                 // 次の文字の子音
                 for(let next in nexts){ hash[next] = true; }
-                for(let h in hash){ tmp.push(h); }
+                for(let h in hash){ tmp.push({roman: h, isTyped: false}); }
                 // 元の"っ"の入力
-                for(let l in ltu){ tmp.push(ltu[l]); }
+                for(let l in ltu){ tmp.push({roman: ltu[l], isTyped: false}); }
             } // "ちゃ"などの2文字のやーつ
             else if(s.length == 2){
                 // 元々の入力を追加
-                for(let i = 0; i < jpnToRoman[s].length; ++i){ tmp.push(jpnToRoman[s][i]); }
+                for(let i = 0; i < jpnToRoman[s].length; ++i){ tmp.push({roman: jpnToRoman[s][i], isTyped:false}); }
                 // "ち"+"ゃ"のように分割する
                 for(let i = 0; i < jpnToRoman[s[0]].length; ++i){
                     for(let j = 0; j < jpnToRoman[s[1]].length; ++j){
-                        tmp.push(jpnToRoman[s[0]][i] + jpnToRoman[s[1]][j]);
+                        tmp.push({roman: jpnToRoman[s[0]][i] + jpnToRoman[s[1]][j], isTyped: false});
                     } //End_For
                 } //End_For
             } //それ以外の場合はそのままでOK
             else{
-                for(let i = 0; i < jpnToRoman[s].length; ++i){ tmp.push(jpnToRoman[s][i]); }
+                for(let i = 0; i < jpnToRoman[s].length; ++i){ tmp.push({roman: jpnToRoman[s][i], isTyped: false}); }
             } //End_IfElse
             typing.push(tmp);
         } //End_For
