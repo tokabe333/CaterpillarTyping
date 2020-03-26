@@ -7,6 +7,7 @@ import { JapanseseInputUtility } from "./JapaneseInputUtility";
 // 可能なタイピングの種類
 export interface TypingRoman{roman: string, isTyped: boolean};
 
+// ゲー無
 export class TypingTest extends Phaser.Scene {
     // --------------- Private変数(undifined可) ---------------
     // 画面上に表示するテキストオブジェクト
@@ -44,14 +45,14 @@ export class TypingTest extends Phaser.Scene {
     // 現在何個目の文字を入力しているか
     private currentCharacterNumber: number = 0;
     // 現在入力している文字の中で何文字目か
-    private currentCharacterNumberofCurrentInput: number = 0;
+    private currentCharacterNumberofCurrentCharacter: number = 0;
     // 現在の文章に対して，これまで入力した正解キー
     private typedKeysFromCurrentText: string = "";
 
     // 現在表示している日本語を1文字or2文字で分割したやつ "や","きゅ","う","み","ん"
     private splittedHiragana: string[] = new Array();
     // ↑のひらがなをもとに作成した正解のローマ字入力パターン
-    private correctInputRomans: {unti:string, unpi:boolean}[][] = new Array();
+    private correctInputRomans: TypingRoman[][] = new Array();
 
 
     // --------------- Phaser用メソッド ---------------
@@ -67,7 +68,7 @@ export class TypingTest extends Phaser.Scene {
 
     // アセットのロード
     preload() {
-        // 入力時イベント
+        // キー入力時イベント
         this.input.keyboard.on("keydown", () => {
             let keyCode = this.keyDownChecker!.checkPuttingKey(this.input.keyboard);
             console.log(keyToRoman[keyCode!]);
@@ -157,10 +158,12 @@ export class TypingTest extends Phaser.Scene {
         return previewRoman;
     } //End_Method
 
-    // 入力された文字が正しいか
+    // 現在入力待ちのローマ字が入力されたか
     // return 
-    private isCorrectRomanInput(keycode: number): number{
+    private isCorrectRomanInput(roman: string): boolean{
+        
 
-    }
+        return true;
+    } //End_Method
 } //End_Class
 
