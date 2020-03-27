@@ -16,6 +16,7 @@ class Main extends Phaser.Game {
       width: 800, // ゲーム横幅
       height: 600, // ゲーム縦幅
       parent: "canvas-wrapper",
+      dom: { createContainer: true },
     };
     super(config); // Phaser.Gameクラスにコンフィグを渡す
 
@@ -23,6 +24,7 @@ class Main extends Phaser.Game {
     this.scene.add("preload", Preload, false);
     this.scene.add("typing", TypingTest, false);
     this.scene.add("result", Result, false);
+
     // シーンをスタート
     this.scene.start("preload");
   } //End_Constructor
@@ -40,8 +42,17 @@ window.onload = () => {
 };
 
 window.onclick = () => {  
-  let ngo = GameApp.scene.getAt(GameApp.scene.getIndex("typing"));
-  alert(ngo instanceof Phaser.Scene);
+  let ngo = GameApp.scene.getAt(GameApp.scene.getIndex("preload"));
+  
+  var newDiv = document.createElement("div");
+  var newContent = document.createTextNode("Hi ther and greetingas!");
+  newDiv.appendChild(newContent);
+  let ngogo = document.createElement("div");
+  ngogo.innerText = "fjdkl;as";
+  ngo!.add.dom(300,300, ngogo);
+  ngo!.add.dom(10,10,newDiv);
+  GameApp.scene.start("preload");
+  ngo!.add.dom(300, 300, 'div', 'background-color: lime; width: 220px; height: 100px; font: 48px Arial', 'Phaser');
   alert(ngo!.scene.key);
 }
 
