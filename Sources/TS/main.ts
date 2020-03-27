@@ -17,6 +17,7 @@ class Main extends Phaser.Game {
       height: 600, // ゲーム縦幅
       parent: "canvas-wrapper",
       dom: { createContainer: true },
+      scene: { preload: preload },
     };
     super(config); // Phaser.Gameクラスにコンフィグを渡す
 
@@ -36,24 +37,26 @@ var GameApp: Phaser.Game;
 // ブラウザでDOM描写終了直後に呼び出される
 window.onload = () => {
   // Mainクラスのインスタンスを生成（ここで初めてゲームが生成）
-
   GameApp = new Main();
-  
 };
 
-window.onclick = () => {  
+function preload(){
   let ngo = GameApp.scene.getAt(GameApp.scene.getIndex("preload"));
+  var loginForm = document.createElement("form");
+  var playerName = document.createElement("input");
+  var playerNameDiv = document.createElement("div");
+  var playerPasswordDiv = document.createElement("div");
+  var playerPassword = document.createElement("input");
+  playerNameDiv.appendChild(playerName);
+  playerPasswordDiv.appendChild(playerPassword);
+  loginForm.appendChild(playerNameDiv);
+  loginForm.appendChild(playerPasswordDiv);
+  ngo!.add.dom(100,100,loginForm);
+}
+
+window.onclick = () => {  
   
-  var newDiv = document.createElement("div");
-  var newContent = document.createTextNode("Hi ther and greetingas!");
-  newDiv.appendChild(newContent);
-  let ngogo = document.createElement("div");
-  ngogo.innerText = "fjdkl;as";
-  ngo!.add.dom(300,300, ngogo);
-  ngo!.add.dom(10,10,newDiv);
-  GameApp.scene.start("preload");
-  ngo!.add.dom(300, 300, 'div', 'background-color: lime; width: 220px; height: 100px; font: 48px Arial', 'Phaser');
-  alert(ngo!.scene.key);
+  //ngo!.add.dom(300, 300, 'div', 'background-color: lime; width: 220px; height: 100px; font: 48px Arial', 'Phaser');
 }
 
 
