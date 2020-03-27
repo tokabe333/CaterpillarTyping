@@ -202,5 +202,20 @@ export class TypingTest extends Phaser.Scene {
         console.log(this.correctInputRomans);
         return isCorrect;
     } //End_Method
+
+    // 画面表示されてるローマ字のうｐだて
+    private updatePreviewRoman(){
+        let gray: string = "";
+        for(let i = 0; i < this.correctInputRomans.length; ++i){
+            for(let j = 0; j < this.correctInputRomans[i].length; ++j){
+                if(this.correctInputRomans[i][j].isTyped){
+                    gray += this.correctInputRomans[i][j];
+                    break;
+                } //End_If
+            } //End_For
+        } //End_For
+
+        let white: string = "";
+    } //End_Method
 } //End_Class
 

@@ -35,16 +35,22 @@ var GameApp: Phaser.Game;
 window.onload = () => {
   // Mainクラスのインスタンスを生成（ここで初めてゲームが生成）
 
-  const GameApp: Phaser.Game = new Main();
+  GameApp = new Main();
+  
 };
 
-document.body.onload = addElement;
-
-function addElement(){
-  var newDiv = document.createElement("div");
-  newDiv.id = "ngongo";
-  var newContent = document.createTextNode("Hi ther and greetingas!");
-  newDiv.appendChild(newContent);
-  var currentDiv = document.getElementById("div1");
-  document.body.insertBefore(newDiv,currentDiv);
+window.onclick = () => {  
+  let ngo = GameApp.scene.getAt(GameApp.scene.getIndex("typing"));
+  alert(ngo instanceof Phaser.Scene);
+  alert(ngo!.scene.key);
 }
+
+
+// function addElement(){
+//   var newDiv = document.createElement("div");
+//   newDiv.id = "ngongo";
+//   var newContent = document.createTextNode("Hi ther and greetingas!");
+//   newDiv.appendChild(newContent);
+//   var currentDiv = document.getElementById("div1");
+//   document.body.insertBefore(newDiv,currentDiv);
+// }
