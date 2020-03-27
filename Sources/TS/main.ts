@@ -41,17 +41,24 @@ window.onload = () => {
 };
 
 function preload(){
-  let ngo = GameApp.scene.getAt(GameApp.scene.getIndex("preload"));
+  let preloadScene = GameApp.scene.getAt(GameApp.scene.getIndex("preload"));
+  let typingScene = GameApp.scene.getAt(GameApp.scene.getIndex("typing"));
   var loginForm = document.createElement("form");
   var playerName = document.createElement("input");
   var playerNameDiv = document.createElement("div");
+  var submitButton = document.createElement("button");
+  submitButton.setAttribute("type","submit");
+  //playerName.setAttribute("style","height:150px");
+  loginForm.setAttribute("method","GET");
+  loginForm.setAttribute("action","https://naothinthin.xyz");
   var playerPasswordDiv = document.createElement("div");
   var playerPassword = document.createElement("input");
   playerNameDiv.appendChild(playerName);
   playerPasswordDiv.appendChild(playerPassword);
   loginForm.appendChild(playerNameDiv);
   loginForm.appendChild(playerPasswordDiv);
-  ngo!.add.dom(100,100,loginForm);
+  loginForm.appendChild(submitButton);
+  preloadScene!.add.dom(90,50,loginForm);
 }
 
 window.onclick = () => {  
