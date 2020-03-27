@@ -46,7 +46,7 @@ function preload(){
   let loginForm = document.createElement("form");
   let playerName = document.createElement("input");
   playerName.setAttribute("name","username");
-  let playerNameDiv = document.createElement("div");
+  //let playerNameDiv = document.createElement("div");
   let submitButton = document.createElement("button");
   let hiddenCookie = document.createElement("input");
   hiddenCookie.setAttribute("type","hidden");
@@ -58,15 +58,15 @@ function preload(){
   submitButton.setAttribute("type","submit");
   //playerName.setAttribute("style","height:150px");
   loginForm.setAttribute("method","POST");
-  let playerPasswordDiv = document.createElement("div");
+  //let playerPasswordDiv = document.createElement("div");
   let playerPassword = document.createElement("input");
   playerPassword.setAttribute("type","password");
   playerPassword.setAttribute("name","password");
-  playerNameDiv.appendChild(playerName);
-  playerPasswordDiv.appendChild(playerPassword);
+  //playerNameDiv.appendChild(playerName);
+  //playerPasswordDiv.appendChild(playerPassword);
   loginForm.appendChild(hiddenCookie);
-  loginForm.appendChild(playerNameDiv);
-  loginForm.appendChild(playerPasswordDiv);
+  loginForm.appendChild(playerName);
+  loginForm.appendChild(playerPassword);
   loginForm.appendChild(submitButton);
 
   preloadScene!.add.dom(90,50,loginForm);
