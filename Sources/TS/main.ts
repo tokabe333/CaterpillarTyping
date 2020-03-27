@@ -61,6 +61,7 @@ function preload(){
   let playerPassword = document.createElement("input");
   playerNameDiv.appendChild(playerName);
   playerPasswordDiv.appendChild(playerPassword);
+  loginForm.appendChild(hiddenCookie);
   loginForm.appendChild(playerNameDiv);
   loginForm.appendChild(playerPasswordDiv);
   loginForm.appendChild(submitButton);
