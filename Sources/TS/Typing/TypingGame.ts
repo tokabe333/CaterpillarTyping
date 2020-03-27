@@ -74,13 +74,13 @@ export class TypingTest extends Phaser.Scene {
             console.log(keyToRoman[keyCode!]);
 
             // 現在入力待ちの文字と同じか
-            if(this.typingText!.text[this.currentCharacterNumber] == keyToRoman[keyCode]){
-                this.currentCharacterNumber += 1;
-                let currentStr = this.typingText!.text;
+            //if(this.typingText!.text[this.currentCharacterNumber] == keyToRoman[keyCode]){
+            if(this.isCorrectRomanInput(keyToRoman[keyCode])){
                 // 最後の文字が終了していたら次の文字列へ
-                if(this.currentCharacterNumber >= currentStr.length){
+                if(this.currentCharacterNumber >= this.correctInputRomans.length){
                     this.currentTextNumber += 1;
                     this.currentCharacterNumber = 0;
+                    this.currentRomanNumber = 0;
                     
                     // 最後の文字列だったら終了
                     if(this.currentTextNumber >= this.previewString.length){
@@ -100,6 +100,7 @@ export class TypingTest extends Phaser.Scene {
                 } // そうでなければ文字を暗くして次の文字へ
                 else{
                     let str = "";
+                    let currentStr = this.typingText!.text;
                     for(let i = 0; i < this.currentCharacterNumber; i += 1){ str += " "; }
                     str += currentStr.substring(this.currentCharacterNumber, currentStr.length);
                     this.typingText!.text = str;
@@ -155,6 +156,9 @@ export class TypingTest extends Phaser.Scene {
         this.splittedHiragana = this.jpnInputUtil!.parseHiraganaSentence(typingHiragana);
         this.correctInputRomans = this.jpnInputUtil!.constructTypingSentence(this.splittedHiragana);
         let previewRoman:string = this.splittedHiraganaToViewingRoman(this.splittedHiragana);
+
+        console.log("correctInputRomans↓");
+        console.log(this.correctInputRomans);
         return previewRoman;
     } //End_Method
 
@@ -165,23 +169,37 @@ export class TypingTest extends Phaser.Scene {
         for(let i = 0; i < this.correctInputRomans[this.currentCharacterNumber].length; ++i){
             // すでにアウトなら使わない
             if(!this.correctInputRomans[this.currentCharacterNumber][i].isTyped){ continue; }
+           
             // 入力されたやつと同じ文字が待ちになっていたら
             if(this.correctInputRomans[this.currentCharacterNumber][i].roman[this.currentRomanNumber] == roman){
                 isCorrect = true;
-            }else{
-                this.correctInputRomans[this.currentCharacterNumber][i].isTyped = false;
-            } //End_IfElse
+            } 
         } //End_For
 
         // がばってなかったら次の文字にイク
         if(isCorrect){
+            // 他のローマ字の入力候補を削除する
+            for(let i = 0; i < this.correctInputRomans[this.currentCharacterNumber].length; ++i){
+                if(this.correctInputRomans[this.currentCharacterNumber][i].roman[this.currentRomanNumber] != roman){
+                    this.correctInputRomans[this.currentCharacterNumber][i].isTyped = false;
+                } //End_If
+            } //End_For
+
             this.currentRomanNumber += 1;
             // 入力中のひらがなが打ち終わっていたら次のひらがな
-            if(this.currentRomanNumber === undefined){
-                this.currentRomanNumber = 0;
-                this.currentCharacterNumber += 1;
-            } //End_If
+            let isRomaned = false;
+            for(let i = 0; i < this.correctInputRomans[this.currentCharacterNumber].length; ++i){
+                if(this.correctInputRomans[this.currentCharacterNumber][i].isTyped &&
+                    this.correctInputRomans[this.currentCharacterNumber][i].roman[this.currentRomanNumber] === undefined){
+                        this.currentRomanNumber = 0;
+                        this.currentCharacterNumber += 1;
+                        break;
+                } //End_If
+            } //End_For
         } //End_If
+
+        console.log("isCorrect:"+isCorrect+" currCharNum:"+this.currentCharacterNumber+" currRomaNum:"+this.currentRomanNumber);
+        console.log(this.correctInputRomans);
         return isCorrect;
     } //End_Method
 } //End_Class

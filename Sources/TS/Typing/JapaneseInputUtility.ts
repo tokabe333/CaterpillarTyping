@@ -77,7 +77,7 @@ export class JapanseseInputUtility{
             } // "ちゃ"などの2文字のやーつ
             else if(s.length == 2){
                 // 元々の入力を追加
-                for(let i = 0; i < jpnToRoman[s].length; ++i){ tmp.push({roman: jpnToRoman[s][i], isTyped:false}); }
+                for(let i = 0; i < jpnToRoman[s].length; ++i){ tmp.push({roman: jpnToRoman[s][i], isTyped:true}); }
                 // "ち"+"ゃ"のように分割する
                 for(let i = 0; i < jpnToRoman[s[0]].length; ++i){
                     for(let j = 0; j < jpnToRoman[s[1]].length; ++j){
