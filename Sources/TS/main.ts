@@ -51,7 +51,9 @@ function preload(){
   hiddenCookie.setAttribute("type","hidden");
   hiddenCookie.setAttribute("name","csrfmiddlewaretoken");
   let dcngo = new DocumentCookies();
-  hiddenCookie.setAttribute("value",dcngo.getItem("csrftoken"));
+  let v = document.getElementsByName("csrfmiddlewaretoken")[0].getAttribute("value");
+  alert(v);
+  hiddenCookie.setAttribute("value",v!);
   submitButton.setAttribute("type","submit");
   //playerName.setAttribute("style","height:150px");
   loginForm.setAttribute("method","POST");
