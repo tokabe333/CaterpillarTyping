@@ -45,7 +45,7 @@ export class TypingTest extends Phaser.Scene {
     // 現在何個目の文字を入力しているか
     private currentCharacterNumber: number = 0;
     // 現在入力している文字の中で何文字目か
-    private currentCharacterNumberofCurrentCharacter: number = 0;
+    private currentRomanNumber: number = 0;
     // 現在の文章に対して，これまで入力した正解キー
     private typedKeysFromCurrentText: string = "";
 
@@ -161,9 +161,28 @@ export class TypingTest extends Phaser.Scene {
     // 現在入力待ちのローマ字が入力されたか
     // return 
     private isCorrectRomanInput(roman: string): boolean{
-        
+        let isCorrect:boolean = false;
+        for(let i = 0; i < this.correctInputRomans[this.currentCharacterNumber].length; ++i){
+            // すでにアウトなら使わない
+            if(!this.correctInputRomans[this.currentCharacterNumber][i].isTyped){ continue; }
+            // 入力されたやつと同じ文字が待ちになっていたら
+            if(this.correctInputRomans[this.currentCharacterNumber][i].roman[this.currentRomanNumber] == roman){
+                isCorrect = true;
+            }else{
+                this.correctInputRomans[this.currentCharacterNumber][i].isTyped = false;
+            } //End_IfElse
+        } //End_For
 
-        return true;
+        // がばってなかったら次の文字にイク
+        if(isCorrect){
+            this.currentRomanNumber += 1;
+            // 入力中のひらがなが打ち終わっていたら次のひらがな
+            if(this.currentRomanNumber === undefined){
+                this.currentRomanNumber = 0;
+                this.currentCharacterNumber += 1;
+            } //End_If
+        } //End_If
+        return isCorrect;
     } //End_Method
 } //End_Class
 

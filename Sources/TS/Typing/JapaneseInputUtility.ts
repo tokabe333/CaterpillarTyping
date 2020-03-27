@@ -62,7 +62,7 @@ export class JapanseseInputUtility{
                 let nn:string[] = jpnToRoman["ん"];
                 for(let i = 0; i < nn.length; ++i){
                     if(!isValidSingleN && nn[i] === "n"){ continue; }
-                    tmp.push({roman: nn[i], isTyped: false});
+                    tmp.push({roman: nn[i], isTyped: true});
                 } //End_For
             } // "っ"の処理
             else if(s === "っ"){
@@ -71,9 +71,9 @@ export class JapanseseInputUtility{
                 let hash:{[key: string]:boolean} = {};
                 // 次の文字の子音
                 for(let next in nexts){ hash[next] = true; }
-                for(let h in hash){ tmp.push({roman: h, isTyped: false}); }
+                for(let h in hash){ tmp.push({roman: h, isTyped: true}); }
                 // 元の"っ"の入力
-                for(let l in ltu){ tmp.push({roman: ltu[l], isTyped: false}); }
+                for(let l in ltu){ tmp.push({roman: ltu[l], isTyped: true}); }
             } // "ちゃ"などの2文字のやーつ
             else if(s.length == 2){
                 // 元々の入力を追加
@@ -81,12 +81,12 @@ export class JapanseseInputUtility{
                 // "ち"+"ゃ"のように分割する
                 for(let i = 0; i < jpnToRoman[s[0]].length; ++i){
                     for(let j = 0; j < jpnToRoman[s[1]].length; ++j){
-                        tmp.push({roman: jpnToRoman[s[0]][i] + jpnToRoman[s[1]][j], isTyped: false});
+                        tmp.push({roman: jpnToRoman[s[0]][i] + jpnToRoman[s[1]][j], isTyped: true});
                     } //End_For
                 } //End_For
             } //それ以外の場合はそのままでOK
             else{
-                for(let i = 0; i < jpnToRoman[s].length; ++i){ tmp.push({roman: jpnToRoman[s][i], isTyped: false}); }
+                for(let i = 0; i < jpnToRoman[s].length; ++i){ tmp.push({roman: jpnToRoman[s][i], isTyped: true}); }
             } //End_IfElse
             typing.push(tmp);
         } //End_For
