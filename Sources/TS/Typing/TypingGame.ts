@@ -7,6 +7,9 @@ import { JapanseseInputUtility } from "./JapaneseInputUtility";
 // 可能なタイピングの種類
 export interface TypingRoman{roman: string, isTyped: boolean};
 
+// タイピング中 or タイピングするローマ字(打った値によって変わっていく)
+interface PreviewRoman{white: string, gray: string};
+
 // ゲー無
 export class TypingTest extends Phaser.Scene {
     // --------------- Private変数(undifined可) ---------------
@@ -85,21 +88,23 @@ export class TypingTest extends Phaser.Scene {
                     // 最後の文字列だったら終了
                     if(this.currentTextNumber >= this.previewString.length){
                         this.scene.start("result");
+                        return;
                     } //End_If
 
                     // 次の文字列
-                    let nextStr = this.setHiraganaAndPreviewRoman(this.typingString[this.currentTextNumber]);
+                    this.setHiraganaAndPreviewRoman(this.typingString[this.currentTextNumber]);
+                    let preview: PreviewRoman = this.updatePreviewRoman(true);
                     console.log("splitted:", this.splittedHiragana);
                     console.log("correct:", this.correctInputRomans);
                     console.log();
 
                     // 次の文字列を表示
-                    this.typingTextPlaced!.text = nextStr;
-                    this.typingText!.text = nextStr;
+                    this.typingTextPlaced!.text = preview.gray;
+                    this.typingText!.text = preview.white;
                     this.previewText!.text = this.previewString[this.currentTextNumber];
                 } // そうでなければ文字を暗くして次の文字へ
                 else{
-                    this.updatePreviewRoman();
+                    this.updatePreviewRoman(true);
                 } //End_Else 
             } //End_If
         }); //End_Event
@@ -112,13 +117,14 @@ export class TypingTest extends Phaser.Scene {
         this.previewText = this.add.text(400, 300, this.previewString[0], this.previewFontStyle).setOrigin(0.5, 0.5);
 
         // タイピング用のローマ字関係
-        let preview: string = this.setHiraganaAndPreviewRoman(this.typingString[0]);
+        this.setHiraganaAndPreviewRoman(this.typingString[0]);
+        let preview: PreviewRoman = this.updatePreviewRoman(false);
         console.log("splitted:", this.splittedHiragana);
         console.log("correct:", this.correctInputRomans);
         console.log();
 
-        this.typingTextPlaced = this.add.text(400, 250, preview, this.typingPlacedFontStyle).setOrigin(0.5, 0.5);
-        this.typingText = this.add.text(400, 250, preview, this.typingFontStyle).setOrigin(0.5, 0.5);
+        this.typingTextPlaced = this.add.text(400, 250, preview.gray, this.typingPlacedFontStyle).setOrigin(0.5, 0.5);
+        this.typingText = this.add.text(400, 250, preview.white, this.typingFontStyle).setOrigin(0.5, 0.5);
     } //End_Method
 
     // ゲームの各フレーム更新毎に呼びだされる
@@ -148,14 +154,9 @@ export class TypingTest extends Phaser.Scene {
 
     // jpnInputUtilを使って次の入力文字の正解を作っておく
     // returnは初期表示用ローマ字
-    private setHiraganaAndPreviewRoman(typingHiragana: string): string{
+    private setHiraganaAndPreviewRoman(typingHiragana: string){
         this.splittedHiragana = this.jpnInputUtil!.parseHiraganaSentence(typingHiragana);
         this.correctInputRomans = this.jpnInputUtil!.constructTypingSentence(this.splittedHiragana);
-        let previewRoman:string = this.splittedHiraganaToViewingRoman(this.splittedHiragana);
-
-        console.log("correctInputRomans↓");
-        console.log(this.correctInputRomans);
-        return previewRoman;
     } //End_Method
 
     // 現在入力待ちのローマ字が入力されたか
@@ -200,7 +201,7 @@ export class TypingTest extends Phaser.Scene {
     } //End_Method
 
     // 画面表示されてるローマ字のうｐだて
-    private updatePreviewRoman(){
+    private updatePreviewRoman(setText: boolean): PreviewRoman{
         let gray: string = "";
         let len: number = 0;
         for(let i = 0; i < this.correctInputRomans.length; ++i){
@@ -219,8 +220,11 @@ export class TypingTest extends Phaser.Scene {
         for(let i = 0; i < len; ++i){ white += " "; }
         white += gray.substring(white.length, gray.length);
 
-        this.typingTextPlaced!.text = gray;
-        this.typingText!.text = white;
+        if(setText){
+            this.typingTextPlaced!.text = gray;
+            this.typingText!.text = white;
+        } //End_If
+        return {white, gray};
     } //End_Method
 } //End_Class
 
