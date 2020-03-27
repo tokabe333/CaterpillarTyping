@@ -25,12 +25,19 @@ class Main extends Phaser.Game {
     this.scene.add("result", Result, false);
     // シーンをスタート
     this.scene.start("preload");
-  }
-}
+  } //End_Constructor
+} //End_Class
+
+var GameApp: Phaser.Game;
 
 // ブラウザでDOM描写終了直後に呼び出される
 window.onload = () => {
-
   // Mainクラスのインスタンスを生成（ここで初めてゲームが生成）
-  const GameApp: Phaser.Game = new Main();
+  GameApp = new Main();
 };
+
+window.addEventListener("click", () =>{
+  // let ngo = GameApp.scene.getAt(0)!.children.getChildren()[0];
+  // let ngoo = ngo as Phaser.GameObjects.Text;
+  // alert(ngoo.text);
+});
