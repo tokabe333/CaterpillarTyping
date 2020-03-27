@@ -79,6 +79,8 @@ export class TypingTest extends Phaser.Scene {
                 // 最後の文字が終了していたら次の文字列へ
                 if(this.currentCharacterNumber >= this.correctInputRomans.length){
                     this.currentTextNumber += 1;
+                    this.currentCharacterNumber = 0;
+                    this.currentRomanNumber = 0;
                     
                     // 最後の文字列だったら終了
                     if(this.currentTextNumber >= this.previewString.length){
@@ -167,18 +169,22 @@ export class TypingTest extends Phaser.Scene {
         for(let i = 0; i < this.correctInputRomans[this.currentCharacterNumber].length; ++i){
             // すでにアウトなら使わない
             if(!this.correctInputRomans[this.currentCharacterNumber][i].isTyped){ continue; }
+           
             // 入力されたやつと同じ文字が待ちになっていたら
             if(this.correctInputRomans[this.currentCharacterNumber][i].roman[this.currentRomanNumber] == roman){
                 isCorrect = true;
-            } // 先頭でなければ多少はね？
-            else if(this.currentRomanNumber != 0){
-                this.correctInputRomans[this.currentCharacterNumber][i].isTyped = false;
-            } //End_IfElse
+            } 
         } //End_For
 
-      
         // がばってなかったら次の文字にイク
         if(isCorrect){
+            // 他のローマ字の入力候補を削除する
+            for(let i = 0; i < this.correctInputRomans[this.currentCharacterNumber].length; ++i){
+                if(this.correctInputRomans[this.currentCharacterNumber][i].roman[this.currentRomanNumber] != roman){
+                    this.correctInputRomans[this.currentCharacterNumber][i].isTyped = false;
+                } //End_If
+            } //End_For
+
             this.currentRomanNumber += 1;
             // 入力中のひらがなが打ち終わっていたら次のひらがな
             let isRomaned = false;
