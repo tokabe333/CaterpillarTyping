@@ -43,27 +43,29 @@ window.onload = () => {
 function preload(){
   let preloadScene = GameApp.scene.getAt(GameApp.scene.getIndex("preload"));
   let typingScene = GameApp.scene.getAt(GameApp.scene.getIndex("typing"));
-  var loginForm = document.createElement("form");
-  var playerName = document.createElement("input");
-  var playerNameDiv = document.createElement("div");
-  var submitButton = document.createElement("button");
+  let loginForm = document.createElement("form");
+  let playerName = document.createElement("input");
+  let playerNameDiv = document.createElement("div");
+  let submitButton = document.createElement("button");
+  let hiddenCookie = document.createElement("input");
+  hiddenCookie.setAttribute("type","hidden");
+  hiddenCookie.setAttribute("name","csrfmiddlewaretoken");
+  let dcngo = new DocumentCookies();
+  hiddenCookie.setAttribute("value",dcngo.getItem("csrftoken"));
   submitButton.setAttribute("type","submit");
   //playerName.setAttribute("style","height:150px");
-  loginForm.setAttribute("method","GET");
-  loginForm.setAttribute("action","https://naothinthin.xyz");
-  var playerPasswordDiv = document.createElement("div");
-  var playerPassword = document.createElement("input");
+  loginForm.setAttribute("method","POST");
+  let playerPasswordDiv = document.createElement("div");
+  let playerPassword = document.createElement("input");
   playerNameDiv.appendChild(playerName);
   playerPasswordDiv.appendChild(playerPassword);
   loginForm.appendChild(playerNameDiv);
   loginForm.appendChild(playerPasswordDiv);
   loginForm.appendChild(submitButton);
-  loginForm.innerText = "unchi";
 
   preloadScene!.add.dom(90,50,loginForm);
 
-  let dcngo = new DocumentCookies();
-  alert(dcngo.getItem("csrftoken"));
+  
 }
 
 window.onclick = () => {  
