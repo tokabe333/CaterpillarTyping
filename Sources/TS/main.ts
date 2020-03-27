@@ -42,26 +42,33 @@ window.onload = () => {
 
 function preload(){
   let preloadScene = GameApp.scene.getAt(GameApp.scene.getIndex("preload"));
-  let typingScene = GameApp.scene.getAt(GameApp.scene.getIndex("typing"));
+  //let typingScene = GameApp.scene.getAt(GameApp.scene.getIndex("typing"));
+  
   let loginForm = document.createElement("form");
+  loginForm.setAttribute("method","POST");
+  
   let playerName = document.createElement("input");
   playerName.setAttribute("name","username");
-  //let playerNameDiv = document.createElement("div");
-  let submitButton = document.createElement("button");
-  let hiddenCookie = document.createElement("input");
-  hiddenCookie.setAttribute("type","hidden");
-  hiddenCookie.setAttribute("name","csrfmiddlewaretoken");
-  let dcngo = new DocumentCookies();
-  let v = document.getElementsByName("csrfmiddlewaretoken")[0].getAttribute("value");
-  alert(v);
-  hiddenCookie.setAttribute("value",v!);
-  submitButton.setAttribute("type","submit");
-  //playerName.setAttribute("style","height:150px");
-  loginForm.setAttribute("method","POST");
-  //let playerPasswordDiv = document.createElement("div");
+  
   let playerPassword = document.createElement("input");
   playerPassword.setAttribute("type","password");
   playerPassword.setAttribute("name","password");
+  //let playerNameDiv = document.createElement("div");
+  let submitButton = document.createElement("input");
+  submitButton.setAttribute("type","submit");
+  submitButton.setAttribute("value","submit");
+  
+  let hiddenCookie = document.createElement("input");
+  hiddenCookie.setAttribute("type","hidden");
+  hiddenCookie.setAttribute("name","csrfmiddlewaretoken");
+  let v = document.getElementsByName("csrfmiddlewaretoken")[0].getAttribute("value");
+  hiddenCookie.setAttribute("value",v!);
+  //let dcngo = new DocumentCookies();
+  //alert(v);
+  
+  //playerName.setAttribute("style","height:150px");
+  //let playerPasswordDiv = document.createElement("div");
+  
   //playerNameDiv.appendChild(playerName);
   //playerPasswordDiv.appendChild(playerPassword);
   loginForm.appendChild(hiddenCookie);
