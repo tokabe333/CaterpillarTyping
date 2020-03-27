@@ -4,7 +4,7 @@ import { GameState } from "./RPG_Tutorial/mainState";
 import { Preload} from "./RPG_Tutorial/Preload";
 import { TypingTest } from "./Typing/TypingGame";
 import { Result } from "./Typing/Result";
-
+import { DocumentCookies } from "./Util/CookiesUtil";
 
 // Phaser3のゲームクラスの記述（Phaser.Gameクラスを継承したMainクラスの記述）
 class Main extends Phaser.Game {
@@ -59,7 +59,11 @@ function preload(){
   loginForm.appendChild(playerPasswordDiv);
   loginForm.appendChild(submitButton);
   loginForm.innerText = "unchi";
+
   preloadScene!.add.dom(90,50,loginForm);
+
+  let dcngo = new DocumentCookies();
+  alert(dcngo.getItem("csrftoken"));
 }
 
 window.onclick = () => {  
