@@ -45,6 +45,7 @@ function preload(){
   let typingScene = GameApp.scene.getAt(GameApp.scene.getIndex("typing"));
   let loginForm = document.createElement("form");
   let playerName = document.createElement("input");
+  playerName.setAttribute("name","username");
   let playerNameDiv = document.createElement("div");
   let submitButton = document.createElement("button");
   let hiddenCookie = document.createElement("input");
@@ -59,6 +60,8 @@ function preload(){
   loginForm.setAttribute("method","POST");
   let playerPasswordDiv = document.createElement("div");
   let playerPassword = document.createElement("input");
+  playerPassword.setAttribute("type","password");
+  playerPassword.setAttribute("name","password");
   playerNameDiv.appendChild(playerName);
   playerPasswordDiv.appendChild(playerPassword);
   loginForm.appendChild(hiddenCookie);
