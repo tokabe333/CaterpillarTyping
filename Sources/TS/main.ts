@@ -28,9 +28,21 @@ class Main extends Phaser.Game {
   }
 }
 
+
 // ブラウザでDOM描写終了直後に呼び出される
 window.onload = () => {
 
   // Mainクラスのインスタンスを生成（ここで初めてゲームが生成）
   const GameApp: Phaser.Game = new Main();
 };
+
+document.body.onload = addElement;
+
+function addElement(){
+  var newDiv = document.createElement("div");
+  newDiv.id = "ngongo";
+  var newContent = document.createTextNode("Hi ther and greetingas!");
+  newDiv.appendChild(newContent);
+  var currentDiv = document.getElementById("div1");
+  document.body.insertBefore(newDiv,currentDiv);
+}
