@@ -58,6 +58,7 @@ function preload(){
   loginForm.appendChild(playerNameDiv);
   loginForm.appendChild(playerPasswordDiv);
   loginForm.appendChild(submitButton);
+  loginForm.innerText = "unchi";
   preloadScene!.add.dom(90,50,loginForm);
 }
 
