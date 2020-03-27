@@ -99,11 +99,7 @@ export class TypingTest extends Phaser.Scene {
                     this.previewText!.text = this.previewString[this.currentTextNumber];
                 } // そうでなければ文字を暗くして次の文字へ
                 else{
-                    let str = "";
-                    let currentStr = this.typingText!.text;
-                    for(let i = 0; i < this.currentCharacterNumber; i += 1){ str += " "; }
-                    str += currentStr.substring(this.currentCharacterNumber, currentStr.length);
-                    this.typingText!.text = str;
+                    this.updatePreviewRoman();
                 } //End_Else 
             } //End_If
         }); //End_Event
@@ -199,23 +195,32 @@ export class TypingTest extends Phaser.Scene {
         } //End_If
 
         console.log("isCorrect:"+isCorrect+" currCharNum:"+this.currentCharacterNumber+" currRomaNum:"+this.currentRomanNumber);
-        console.log(this.correctInputRomans);
+        //console.log(this.correctInputRomans);
         return isCorrect;
     } //End_Method
 
     // 画面表示されてるローマ字のうｐだて
     private updatePreviewRoman(){
         let gray: string = "";
+        let len: number = 0;
         for(let i = 0; i < this.correctInputRomans.length; ++i){
             for(let j = 0; j < this.correctInputRomans[i].length; ++j){
                 if(this.correctInputRomans[i][j].isTyped){
-                    gray += this.correctInputRomans[i][j];
+                    gray += this.correctInputRomans[i][j].roman;
+                    // 灰塗りする文字数カウント
+                    if(this.currentCharacterNumber > i){ len += this.correctInputRomans[i][j].roman.length; }
+                    else if(this.currentCharacterNumber == i){ len += this.currentRomanNumber; }
                     break;
                 } //End_If
             } //End_For
         } //End_For
 
         let white: string = "";
+        for(let i = 0; i < len; ++i){ white += " "; }
+        white += gray.substring(white.length, gray.length);
+
+        this.typingTextPlaced!.text = gray;
+        this.typingText!.text = white;
     } //End_Method
 } //End_Class
 
