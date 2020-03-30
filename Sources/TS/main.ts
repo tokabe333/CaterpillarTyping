@@ -50,9 +50,9 @@ function preload(){
   let preloadScene = GameApp.scene.getAt(GameApp.scene.getIndex("welcome"));
   //let typingScene = GameApp.scene.getAt(GameApp.scene.getIndex("typing"));
   
-  preloadScene!.load.html("loadhtml","../HTML/hoppii.html");
-  let data = preloadScene!.cache.html.get("loadhtml");
-  alert(data);
+  // preloadScene!.load.html("loadhtml","../HTML/hoppii.html");
+  // let data = preloadScene!.cache.html.get("loadhtml");
+  // alert(data);
 
   let loginForm = document.createElement("form");
   loginForm.setAttribute("method","POST");
@@ -66,24 +66,22 @@ function preload(){
   //let playerNameDiv = document.createElement("div");
   let submitButton = document.createElement("input");
   submitButton.setAttribute("type","submit");
-  submitButton.setAttribute("value","submit");
+  submitButton.setAttribute("value","login");
 
   let logoutForm = document.createElement("form");
   logoutForm.setAttribute("method","GET");
 
   let logoutButton = document.createElement("input");
-  logoutButton.setAttribute("action","https://naothinthin.xyz/myapp/tmep_logout");
+  logoutForm.setAttribute("action","https://naothinthin.xyz/myapp/temp_logout");
   logoutButton.setAttribute("type","submit");
-  logoutButton.setAttribute("value","submit");
+  logoutButton.setAttribute("value","logout");
   
   let hiddenCookie = document.createElement("input");
   hiddenCookie.setAttribute("type","hidden");
   hiddenCookie.setAttribute("name","csrfmiddlewaretoken");
   let v = document.getElementsByName("csrfmiddlewaretoken")[0].getAttribute("value");
   hiddenCookie.setAttribute("value",v!);
-  //let dcngo = new DocumentCookies();
-  //alert(v);
-  
+
   //playerName.setAttribute("style","height:150px");
   //let playerPasswordDiv = document.createElement("div");
   
@@ -96,8 +94,12 @@ function preload(){
   loginForm.appendChild(document.createElement("br"));
   loginForm.appendChild(submitButton);
   logoutForm.appendChild(logoutButton);
-  preloadScene!.add.dom(90,50,loginForm);
-  preloadScene!.add.dom(90,90,logoutForm);
+  if(document.getElementById("islogin")!.getAttribute("value") == "True"){
+    preloadScene!.add.dom(90,90,logoutForm);
+  }
+  else{
+    preloadScene!.add.dom(90,50,loginForm);
+  }
   //alert("ngo");
   }catch(e){
     alert(e);
