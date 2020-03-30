@@ -34,41 +34,41 @@ module.exports = [{
             },
         ]
     },
-    optimization: {
-        minimize: true,
-        minimizer: [new TerserPlugin({
-            extractComments: false,
-            terserOptions:{
-                output:{
-                    comments: false,
-                    beautify: false,
-                },
-                compress: {
-                    drop_console: true,
-                    dead_code: true,
-                    properties: true,
-                    drop_debugger: true,
-                    conditionals: true,
-                    booleans: true,
-                    loops: true,
-                    unused: true,
-                    toplevel: true,
-                    if_return: true,
-                    inline: true,
-                    join_vars: true,
-                    warnings: true,
-                },
-                ecma: 6,
-                mangle: {
-                    keep_classnames: false,
-                    keep_fnames: false,
-                    safari10: true,
-                },
-                ie8: true,
-                safari10: true,
-            },
-            parallel: false,
-            cache: true,
-        })],
-    },
+    // optimization: {
+    //     minimize: true,
+    //     minimizer: [new TerserPlugin({
+    //         extractComments: false,
+    //         terserOptions:{
+    //             output:{
+    //                 comments: false,
+    //                 beautify: false,
+    //             },
+    //             compress: {
+    //                 drop_console: true,
+    //                 dead_code: true,
+    //                 properties: true,
+    //                 drop_debugger: true,
+    //                 conditionals: true,
+    //                 booleans: true,
+    //                 loops: true,
+    //                 unused: true,
+    //                 toplevel: true,
+    //                 if_return: true,
+    //                 inline: true,
+    //                 join_vars: true,
+    //                 warnings: true,
+    //             },
+    //             ecma: 6,
+    //             mangle: {
+    //                 keep_classnames: false,
+    //                 keep_fnames: false,
+    //                 safari10: true,
+    //             },
+    //             ie8: true,
+    //             safari10: true,
+    //         },
+    //         parallel: false,
+    //         cache: true,
+    //     })],
+    // },
 }]
