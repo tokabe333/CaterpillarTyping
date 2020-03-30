@@ -6,9 +6,11 @@ import { Welcome } from "./Typing/Welcome";
 import { TypingTest } from "./Typing/TypingGame";
 import { Result } from "./Typing/Result";
 import { DocumentCookies } from "./Util/CookiesUtil";
+import { NgoNgoNaochin } from "./Ngo";
 
 export var width: number = 800;
 export var height: number = 600;
+
 
 // Phaser3のゲームクラスの記述（Phaser.Gameクラスを継承したMainクラスの記述）
 class Main extends Phaser.Game {
