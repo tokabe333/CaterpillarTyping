@@ -9,7 +9,7 @@ export class Preload extends Phaser.Scene {
   init() {
     console.log("Preloading");
   } //End_Method
-  
+
 
   preload () {
     console.log("Load things necessary for Game scene");
@@ -24,7 +24,7 @@ export class Preload extends Phaser.Scene {
 
     this.startText.setOrigin(0.5);
 
-    // 次のシーンの読み込み処理
+    //次のシーンの読み込み処理
     this.startText.setInteractive();
     this.startText.on("pointerdown", () => {
       //alert("げーむすたーと");
