@@ -42,6 +42,9 @@ module.exports = [{
                 output:{
                     comments: false,
                     beautify: false,
+                    ecma: 6,
+                    indent_level: 0,
+                    indent_start: 0,
                 },
                 compress: {
                     drop_console: true,
@@ -56,7 +59,7 @@ module.exports = [{
                     if_return: true,
                     inline: true,
                     join_vars: true,
-                    warnings: true,
+                    warnings: false,
                 },
                 ecma: 6,
                 mangle: {
