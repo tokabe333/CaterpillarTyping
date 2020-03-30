@@ -56,6 +56,10 @@
 ## 環境構築
 ### TypeScriptインストール
 - npm install -g typescript@2.7.2
+
+### Angularインストール
+- npm install -g @angular@9.1.0
+
 ### Phaserプロジェクト作成
 - npm init
 - npm i -D webpack@4.41 webpack-dev-server@3.9 ts-loader@6.2 source-map-loader@0.2.4
@@ -91,6 +95,12 @@
 1. コマンドプロンプトを立ち上げてプロジェクトのルートディレクトリに移動
 2. npm run autobuild を実行するとPhaserもSASSも勝手に自動コンパイルされる
 3. コマンドプロンプトをつけっぱなしにして編集するだけ！おしまい！
+
+### Angular
+####ビルド後にやること
+そのままindex.htmlを実行しても動かないので以下のことをしてください
+1. base hrefを絶対パスにする(がばがばなのでいずれ修正します)
+2. typeをmoduleからtext/javascriptにする
 
 <br><br>
 
