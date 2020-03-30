@@ -7,7 +7,7 @@ export class Welcome extends Phaser.Scene {
     private catepillarText?: Phaser.GameObjects.Text;
     private optionText?: Phaser.GameObjects.Text;
 
-    private bkColor: string = "oxoofc93";
+    private bkColor: string = "0x00fc93";
     private fontStyle: Phaser.Types.GameObjects.Text.TextStyle = { color: "black", fontSize: "70px", fontFamily: "HG行書体"}; 
 
     // --------------- Private変数(undifined不可) ---------------
@@ -32,7 +32,7 @@ export class Welcome extends Phaser.Scene {
         this.optionText = this.add.text(width * 0.5, height * 0.7, "設定", this.fontStyle).setOrigin(0.5, 0.5);
 
         this.startText!.setInteractive();
-        this.startText.on("pointerdown", () => { this.scene.start("typing");});
+        this.startText!.on("pointerdown", () => { this.scene.start("typing");});
 
     } //End_Method
 
