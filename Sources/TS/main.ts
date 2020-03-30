@@ -94,7 +94,7 @@ function preload(){
   loginForm.appendChild(document.createElement("br"));
   loginForm.appendChild(submitButton);
   logoutForm.appendChild(logoutButton);
-  if(document.getElementById("islogin")!.innerText == "True"){
+  if(document.getElementById("islogin")!.getAttribute("value") == "True"){
     preloadScene!.add.dom(90,90,logoutForm);
   }
   else{
