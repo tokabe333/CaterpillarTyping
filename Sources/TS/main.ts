@@ -44,6 +44,10 @@ function preload(){
   let preloadScene = GameApp.scene.getAt(GameApp.scene.getIndex("preload"));
   //let typingScene = GameApp.scene.getAt(GameApp.scene.getIndex("typing"));
   
+  preloadScene!.load.html("loadhtml","../HTML/hoppii.html");
+  let data = preloadScene!.cache.html.get("loadhtml");
+  alert(data);
+
   let loginForm = document.createElement("form");
   loginForm.setAttribute("method","POST");
   
