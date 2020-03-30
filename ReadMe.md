@@ -181,3 +181,8 @@ https://photonstorm.github.io/phaser3-docs/
 ## 備忘録 (その他)
 #### タイピングガチ勢が本格的タイピングゲーム（ローマ字入力）を実装してみた
 https://qiita.com/Arthur_Lugh/items/43b61877819e402c50d6
+
+#### ウェブパックでバンドルをスプリットする
+https://qiita.com/webpack_master/items/692650b5771a90b3e2e7
+
+#### 
