@@ -65,8 +65,8 @@ function preload(){
   playerPassword.setAttribute("name","password");
   //let playerNameDiv = document.createElement("div");
   let submitButton = document.createElement("input");
-  submitButton.setAttribute("type","login");
-  submitButton.setAttribute("value","submit");
+  submitButton.setAttribute("type","submit");
+  submitButton.setAttribute("value","login");
 
   let logoutForm = document.createElement("form");
   logoutForm.setAttribute("method","GET");
