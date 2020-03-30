@@ -67,7 +67,7 @@ module.exports = [{
                 ie8: true,
                 safari10: true,
             },
-            parallel: true,
+            parallel: false,
             cache: true,
         })],
     },
