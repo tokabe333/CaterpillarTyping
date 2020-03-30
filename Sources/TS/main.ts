@@ -49,9 +49,9 @@ function preload(){
   let preloadScene = GameApp.scene.getAt(GameApp.scene.getIndex("welcome"));
   //let typingScene = GameApp.scene.getAt(GameApp.scene.getIndex("typing"));
   
-  preloadScene!.load.html("loadhtml","../HTML/hoppii.html");
-  let data = preloadScene!.cache.html.get("loadhtml");
-  alert(data);
+  // preloadScene!.load.html("loadhtml","../HTML/hoppii.html");
+  // let data = preloadScene!.cache.html.get("loadhtml");
+  //alert(data);
 
   let loginForm = document.createElement("form");
   loginForm.setAttribute("method","POST");
@@ -75,7 +75,6 @@ function preload(){
   //let dcngo = new DocumentCookies();
   //alert(v);
   
-  let kaigyo = document.createElement("br");
   //playerName.setAttribute("style","height:150px");
   //let playerPasswordDiv = document.createElement("div");
   
@@ -83,10 +82,10 @@ function preload(){
   //playerPasswordDiv.appendChild(playerPassword);
   loginForm.appendChild(hiddenCookie);
   loginForm.appendChild(playerName);
-  loginForm.appendChild(kaigyo);
+  loginForm.appendChild(document.createElement("br"));
   loginForm.appendChild(playerPassword);
+  loginForm.appendChild(document.createElement("br"));
   loginForm.appendChild(submitButton);
-
   preloadScene!.add.dom(90,50,loginForm);
 
   
