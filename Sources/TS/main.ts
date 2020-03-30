@@ -22,7 +22,7 @@ class Main extends Phaser.Game {
       height: height, // ゲーム縦幅
       parent: "canvas-wrapper",
       dom: { createContainer: true },
-      scene: { preload: preload },
+      //scene: { preload: preload },
     };
     super(config); // Phaser.Gameクラスにコンフィグを渡す
 

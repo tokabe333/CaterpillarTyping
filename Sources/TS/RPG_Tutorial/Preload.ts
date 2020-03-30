@@ -9,6 +9,7 @@ export class Preload extends Phaser.Scene {
   init() {
     console.log("Preloading");
   } //End_Method
+  
 
   preload () {
     console.log("Load things necessary for Game scene");
