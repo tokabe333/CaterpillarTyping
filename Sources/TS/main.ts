@@ -75,6 +75,7 @@ function preload(){
   //let dcngo = new DocumentCookies();
   //alert(v);
   
+  let kaigyo = document.createElement("br");
   //playerName.setAttribute("style","height:150px");
   //let playerPasswordDiv = document.createElement("div");
   
@@ -82,6 +83,7 @@ function preload(){
   //playerPasswordDiv.appendChild(playerPassword);
   loginForm.appendChild(hiddenCookie);
   loginForm.appendChild(playerName);
+  loginForm.appendChild(kaigyo);
   loginForm.appendChild(playerPassword);
   loginForm.appendChild(submitButton);
 
