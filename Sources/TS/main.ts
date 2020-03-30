@@ -21,7 +21,7 @@ class Main extends Phaser.Game {
       height: height, // ゲーム縦幅
       parent: "canvas-wrapper",
       dom: { createContainer: true },
-      //scene: { preload: preload },
+      scene: { preload: preload },
     };
     super(config); // Phaser.Gameクラスにコンフィグを渡す
 
@@ -88,7 +88,7 @@ function preload(){
   loginForm.appendChild(submitButton);
   preloadScene!.add.dom(90,50,loginForm);
 
-  alert("ngo");
+  //alert("ngo");
 }
 
 
