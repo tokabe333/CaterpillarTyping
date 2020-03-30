@@ -25,54 +25,64 @@ var terser = new TerserPlugin({
             if_return: true,
             inline: true,
             join_vars: true,
-            warnings: false,
+            warnings: false
         },
         ecma: 6,
         mangle: {
             keep_classnames: false,
             keep_fnames: false,
-            safari10: true,
+            safari10: true
         },
         ie8: true,
-        safari10: true,
+        safari10: true
     },
     parallel: false,
-    cache: true,
+    cache: true
 });
 
 module.exports = [{
-	entry   : {
-		main: "./Sources/TS/main.ts",
-	},
-	output  : {
-		path		:  __dirname + "/Sources/HTML/",
-		filename	: "bundle.js",
-		//publicPath  : "/js/",
-	},
-	devtool: "source-map",
-	resolve : {
-		extensions: [".ts", ".js"],
-		//moduleDirectories: ["./node_modules"],
-	},
-	module : {
-		rules:[
-			{
-				test: /\.js$/,
-				loader: "source-map-loader",   
-			},
-			// {
-			//	 test	: /\.ts$/,
-			//	 loader  : "awesome-typescript-loader",
-			//	 exclude : [/node_modules/]
-			// },
-			{
-				test: /\.ts$/,
-				loader: "ts-loader"
-			},
-		]
-	},
-	optimization: {
-		minimize: true,
-		minimizer: [terser],
-	},
-}]
+    entry: {
+        main: "./Sources/TS/main.ts",
+    },
+    output: {
+        path: __dirname + "/Sources/HTML/",
+        filename: "bundle.js",
+        //publicPath  : "/js/",
+    },
+    devtool: "source-map",
+    resolve: {
+        extensions: [".ts", ".js"],
+        //moduleDirectories: ["./node_modules"],
+    },
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                loader: "source-map-loader",
+            },
+            // {
+            //	 test	: /\.ts$/,
+            //	 loader  : "awesome-typescript-loader",
+            //	 exclude : [/node_modules/]
+            // },
+            {
+                test: /\.ts$/,
+                loader: "ts-loader"
+            }
+        ]
+    },
+    optimization: {
+        minimize: true,
+        minimizer: [terser],
+        splitChunks: {
+            cacheGroups: {
+                vendor: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: "vendor",
+                    chunks: "initial",
+                    enforce: true
+                }
+            }
+        }
+    }
+}];

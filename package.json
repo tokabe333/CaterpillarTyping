@@ -9,9 +9,10 @@
     "webpack-product": "webpack -d --progress --colors --watch --mode=production",
     "start": "webpack-dev-server --content-base Sources/HTML",
     "sass": "node-sass Sources/CSS/ --output Sources/CSS --output-style compressed --watch --source-map true",
-    "compressPy": "python ./Sources/Python/compress.py ./Sources/HTML/bundle.js watch",
+    "compressPyVendor": "python ./Sources/Python/compress.py ./Sources/HTML/1.bundle.js watch",
+    "compressPyUser": "python ./Sources/Python/compress.py ./Sources/HTML/bundle.js watch",
     "autobuild": "run-p webpack sass",
-    "production": "run-p webpack-product sass compressPy"
+    "production": "run-p webpack-product sass compressPyVendor compressPyUser"
   },
   "repository": {
     "type": "git",
