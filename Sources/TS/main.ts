@@ -50,9 +50,9 @@ function preload(){
   let preloadScene = GameApp.scene.getAt(GameApp.scene.getIndex("welcome"));
   //let typingScene = GameApp.scene.getAt(GameApp.scene.getIndex("typing"));
   
-  preloadScene!.load.html("loadhtml","../HTML/hoppii.html");
-  let data = preloadScene!.cache.html.get("loadhtml");
-  alert(data);
+  // preloadScene!.load.html("loadhtml","../HTML/hoppii.html");
+  // let data = preloadScene!.cache.html.get("loadhtml");
+  // alert(data);
 
   let loginForm = document.createElement("form");
   loginForm.setAttribute("method","POST");
@@ -72,7 +72,7 @@ function preload(){
   logoutForm.setAttribute("method","GET");
 
   let logoutButton = document.createElement("input");
-  logoutButton.setAttribute("action","https://naothinthin.xyz/myapp/temp_logout");
+  logoutForm.setAttribute("action","https://naothinthin.xyz/myapp/temp_logout");
   logoutButton.setAttribute("type","submit");
   logoutButton.setAttribute("value","submit");
   
