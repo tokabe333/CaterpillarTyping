@@ -10,7 +10,6 @@ import { DocumentCookies } from "./Util/CookiesUtil";
 export var width: number = 800;
 export var height: number = 600;
 
-
 // Phaser3のゲームクラスの記述（Phaser.Gameクラスを継承したMainクラスの記述）
 class Main extends Phaser.Game {
   constructor() {
@@ -47,6 +46,7 @@ window.onload = () => {
 };
 
 function preload(){
+  try{
   let preloadScene = GameApp.scene.getAt(GameApp.scene.getIndex("welcome"));
   //let typingScene = GameApp.scene.getAt(GameApp.scene.getIndex("typing"));
   
@@ -99,6 +99,9 @@ function preload(){
   preloadScene!.add.dom(90,50,loginForm);
   preloadScene!.add.dom(90,90,logoutForm);
   //alert("ngo");
+  }catch(e){
+    alert(e);
+  }
 }
 
 

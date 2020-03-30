@@ -1,5 +1,6 @@
 import * as Phaser from "phaser";
 
+
 export class Preload extends Phaser.Scene {
   private startText?: Phaser.GameObjects.Text; // 追加
 

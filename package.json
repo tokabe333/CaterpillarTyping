@@ -5,10 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "webpack": "webpack -d --progress --colors --watch --mode=production",
+    "webpack": "webpack -d --progress --colors --watch",
+    "webpack-product": "webpack -d --progress --colors --watch --mode=production",
     "start": "webpack-dev-server --content-base Sources/HTML",
     "sass": "node-sass Sources/CSS/ --output Sources/CSS --output-style compressed --watch --source-map true",
-    "autobuild": "run-p webpack sass"
+    "compressPy": "python ./Sources/Python/compress.py ./Sources/HTML/bundle.js watch",
+    "autobuild": "run-p webpack sass",
+    "production": "run-p webpack-product sass compressPy"
   },
   "repository": {
     "type": "git",
