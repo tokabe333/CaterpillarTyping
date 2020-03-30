@@ -1,10 +1,14 @@
 // Phaser3とシーンプログラムのインポート
 import * as Phaser from "phaser";
 import { GameState } from "./RPG_Tutorial/mainState";
-import { Preload} from "./RPG_Tutorial/Preload";
+import { Preload } from "./RPG_Tutorial/Preload";
+import { Welcome } from "./Typing/Welcome";
 import { TypingTest } from "./Typing/TypingGame";
 import { Result } from "./Typing/Result";
 import { DocumentCookies } from "./Util/CookiesUtil";
+
+export var width: number = 800;
+export var height: number = 600;
 
 // Phaser3のゲームクラスの記述（Phaser.Gameクラスを継承したMainクラスの記述）
 class Main extends Phaser.Game {
@@ -13,8 +17,8 @@ class Main extends Phaser.Game {
     // Phaser.Gameのコンフィグ
     const config: Phaser.Types.Core.GameConfig = {
       type: Phaser.WEBGL,
-      width: 800, // ゲーム横幅
-      height: 600, // ゲーム縦幅
+      width: width, // ゲーム横幅
+      height: height, // ゲーム縦幅
       parent: "canvas-wrapper",
       dom: { createContainer: true },
       scene: { preload: preload },
@@ -22,12 +26,13 @@ class Main extends Phaser.Game {
     super(config); // Phaser.Gameクラスにコンフィグを渡す
 
     // シーンにキーを割り振って登録
+    this.scene.add("welcome", Welcome, false);
     this.scene.add("preload", Preload, false);
     this.scene.add("typing", TypingTest, false);
     this.scene.add("result", Result, false);
 
     // シーンをスタート
-    this.scene.start("preload");
+    this.scene.start("welcome");
   } //End_Constructor
 } //End_Class
 
@@ -41,7 +46,7 @@ window.onload = () => {
 };
 
 function preload(){
-  let preloadScene = GameApp.scene.getAt(GameApp.scene.getIndex("preload"));
+  let preloadScene = GameApp.scene.getAt(GameApp.scene.getIndex("welcome"));
   //let typingScene = GameApp.scene.getAt(GameApp.scene.getIndex("typing"));
   
   preloadScene!.load.html("loadhtml","../HTML/hoppii.html");
