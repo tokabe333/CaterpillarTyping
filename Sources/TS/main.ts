@@ -65,7 +65,7 @@ function preload(){
   playerPassword.setAttribute("name","password");
   //let playerNameDiv = document.createElement("div");
   let submitButton = document.createElement("input");
-  submitButton.setAttribute("type","submit");
+  submitButton.setAttribute("type","login");
   submitButton.setAttribute("value","submit");
 
   let logoutForm = document.createElement("form");
@@ -74,16 +74,14 @@ function preload(){
   let logoutButton = document.createElement("input");
   logoutForm.setAttribute("action","https://naothinthin.xyz/myapp/temp_logout");
   logoutButton.setAttribute("type","submit");
-  logoutButton.setAttribute("value","submit");
+  logoutButton.setAttribute("value","logout");
   
   let hiddenCookie = document.createElement("input");
   hiddenCookie.setAttribute("type","hidden");
   hiddenCookie.setAttribute("name","csrfmiddlewaretoken");
   let v = document.getElementsByName("csrfmiddlewaretoken")[0].getAttribute("value");
   hiddenCookie.setAttribute("value",v!);
-  //let dcngo = new DocumentCookies();
-  //alert(v);
-  
+
   //playerName.setAttribute("style","height:150px");
   //let playerPasswordDiv = document.createElement("div");
   
@@ -96,8 +94,12 @@ function preload(){
   loginForm.appendChild(document.createElement("br"));
   loginForm.appendChild(submitButton);
   logoutForm.appendChild(logoutButton);
-  preloadScene!.add.dom(90,50,loginForm);
-  preloadScene!.add.dom(90,90,logoutForm);
+  if(document.getElementById("islogin")!.innerText == "True"){
+    preloadScene!.add.dom(90,90,logoutForm);
+  }
+  else{
+    preloadScene!.add.dom(90,50,loginForm);
+  }
   //alert("ngo");
 }
 
