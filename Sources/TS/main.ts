@@ -72,7 +72,7 @@ function preload(){
   logoutForm.setAttribute("method","GET");
 
   let logoutButton = document.createElement("input");
-  logoutButton.setAttribute("action","https://naothinthin.xyz/tmep_logout");
+  logoutButton.setAttribute("action","https://naothinthin.xyz/myapp/tmep_logout");
   logoutButton.setAttribute("type","submit");
   logoutButton.setAttribute("value","submit");
   
