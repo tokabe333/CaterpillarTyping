@@ -1,5 +1,7 @@
 const path = require('path');
 const webpack   = require("webpack");
+const TerserPlugin = require('terser-webpack-plugin');
+
 
 module.exports = [{
     entry   : {
@@ -31,5 +33,39 @@ module.exports = [{
                 loader: "ts-loader"
             },
         ]
+    },
+    optimization: {
+        minimize: true,
+        minimizer: [new TerserPlugin({
+            extractComments: false,
+            terserOptions:{
+                output:{
+                    comments: false,
+                    beautify: false,
+                },
+                compress: {
+                    drop_console: true,
+                },
+                ecma: 6,
+                mangle: true,
+                ie8: true,
+                safari10: true,
+                keep_classnames: false,
+                keep_fnames: false,
+            },
+            parallel: true,
+            minify: (file, sourceMap) => {
+                // https://github.com/mishoo/UglifyJS2#minify-options
+                const uglifyJsOptions = {
+                    /* your `uglify-js` package options */
+                };
+                if (sourceMap) {
+                    uglifyJsOptions.sourceMap = {
+                    content: sourceMap,
+                    };
+                }
+                return require('uglify-js').minify(file, uglifyJsOptions);
+            },
+        })],
     },
 }]

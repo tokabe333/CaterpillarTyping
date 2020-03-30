@@ -6,7 +6,6 @@ import { Welcome } from "./Typing/Welcome";
 import { TypingTest } from "./Typing/TypingGame";
 import { Result } from "./Typing/Result";
 import { DocumentCookies } from "./Util/CookiesUtil";
-import { NgoNgoNaochin } from "./Ngo";
 
 export var width: number = 800;
 export var height: number = 600;
@@ -23,7 +22,7 @@ class Main extends Phaser.Game {
       height: height, // ゲーム縦幅
       parent: "canvas-wrapper",
       dom: { createContainer: true },
-      scene: { preload: preload },
+      //scene: { preload: preload },
     };
     super(config); // Phaser.Gameクラスにコンフィグを渡す
 

@@ -55,7 +55,7 @@
 
 ## 環境構築
 ### まとめて環境構築
-- npm install -D webpack@4.41 webpack-dev-server@3.9 ts-loader@6.2 source-map-loader@0.2.4 phaser@3.21 node-sass@4.13.1 npm-run-all
+- npm install -D webpack@4.41 webpack-dev-server@3.9 ts-loader@6.2 source-map-loader@0.2.4 phaser@3.21 node-sass@4.13.1 npm-run-all@4.1.5 terser-webpack-plugin@2.3.5 uglify-es-webpack-plugin@0.10.0
 ### TypeScriptインストール
 - npm install -g typescript@2.7.2
 
@@ -71,6 +71,10 @@
 - webpack.config.js の編集
 ### SCSS(SASS)自動コンパイル設定
 - npm install -D node-sass@4.13.1 
+
+### コンパイル後のファイル圧縮関連
+- npm i -D terser-webpack-plugin@2.3.5
+- npm -D install uglify-es-webpack-plugin@0.10.0
 
 <br><br>
 
@@ -185,4 +189,8 @@ https://qiita.com/Arthur_Lugh/items/43b61877819e402c50d6
 #### ウェブパックでバンドルをスプリットする
 https://qiita.com/webpack_master/items/692650b5771a90b3e2e7
 
-#### 
+#### Webpack 4 圧縮時にJavaScriptのコメントを全て削除する
+https://www.monotalk.xyz/blog/Remove-all-JavaScript-comments-when-compressing-Webpack-4/
+
+#### 【webpack】(現時点で)ES2015 (ES6)のままminifyする方法
+https://qiita.com/ota-meshi/items/e60fa3778c0e53ac6a56
