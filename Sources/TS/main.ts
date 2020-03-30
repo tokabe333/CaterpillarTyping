@@ -72,6 +72,7 @@ function preload(){
   logoutForm.setAttribute("method","GET");
 
   let logoutButton = document.createElement("input");
+  logoutButton.setAttribute("action","https://naothinthin.xyz/tmep_logout");
   logoutButton.setAttribute("type","submit");
   logoutButton.setAttribute("value","submit");
   
@@ -94,6 +95,7 @@ function preload(){
   loginForm.appendChild(playerPassword);
   loginForm.appendChild(document.createElement("br"));
   loginForm.appendChild(submitButton);
+  logoutForm.appendChild(logoutButton);
   preloadScene!.add.dom(90,50,loginForm);
   preloadScene!.add.dom(90,90,logoutForm);
   //alert("ngo");
