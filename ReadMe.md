@@ -55,7 +55,8 @@
 
 ## 環境構築
 ### まとめて環境構築
-- npm install -D webpack@4.41 webpack-dev-server@3.9 ts-loader@6.2 source-map-loader@0.2.4 phaser@3.21 node-sass@4.13.1 npm-run-all@4.1.5 terser-webpack-plugin@2.3.5 uglify-es-webpack-plugin@0.10.0
+- npm install -D webpack@4.41 webpack-dev-server@3.9 ts-loader@6.2 source-map-loader@0.2.4 phaser@3.21 node-sass@4.13.1 npm-run-all@4.1.5 terser-webpack-plugin@2.3.5
+
 ### TypeScriptインストール
 - npm install -g typescript@2.7.2
 
@@ -74,7 +75,6 @@
 
 ### コンパイル後のファイル圧縮関連
 - npm i -D terser-webpack-plugin@2.3.5
-- npm -D install uglify-es-webpack-plugin@0.10.0
 
 <br><br>
 
