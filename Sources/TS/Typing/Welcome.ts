@@ -1,4 +1,5 @@
 import * as Phaser from "phaser";
+import { width, height } from "../main";
 
 export class Welcome extends Phaser.Scene {
     // --------------- Private変数(undifined可) ---------------
@@ -26,7 +27,13 @@ export class Welcome extends Phaser.Scene {
     // ゲームオブジェクトの描写
     create() {
         this.cameras.main.setBackgroundColor(this.bkColor);
-        this.startText = this.add.text(400, 300, "うんち", this.fontStyle);
+        this.startText = this.add.text(width * 0.5, height * 0.3, "Game Start", this.fontStyle).setOrigin(0.5, 0.5);
+        this.catepillarText = this.add.text(width * 0.5, height * 0.5, "芋虫もーど", this.fontStyle).setOrigin(0.5, 0.5);
+        this.optionText = this.add.text(width * 0.5, height * 0.7, "設定", this.fontStyle).setOrigin(0.5, 0.5);
+
+        this.startText!.setInteractive();
+        this.startText.on("pointerdown", () => { this.scene.start("typing");});
+
     } //End_Method
 
     // ゲームの各フレーム更新毎に呼びだされる
