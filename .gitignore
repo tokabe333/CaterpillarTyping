@@ -10,6 +10,8 @@
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
+Sources/HTML/bundle.js
+
 # Build results
 # [Dd]ebug/
 # [Dd]ebugPublic/
@@ -259,3 +261,4 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+Sources/HTML/bundle.js

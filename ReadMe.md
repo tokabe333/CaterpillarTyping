@@ -54,6 +54,8 @@
 
 
 ## 環境構築
+### まとめて環境構築
+- npm install -D webpack@4.41 webpack-dev-server@3.9 ts-loader@6.2 source-map-loader@0.2.4 phaser@3.21 node-sass@4.13.1 npm-run-all
 ### TypeScriptインストール
 - npm install -g typescript@2.7.2
 
@@ -68,7 +70,7 @@
 - tsconfig.json の編集
 - webpack.config.js の編集
 ### SCSS(SASS)自動コンパイル設定
-- npm install node-sass -D
+- npm install -D node-sass@4.13.1 
 
 <br><br>
 
@@ -89,7 +91,7 @@
 
 ### PhaserとかSASSとかまとめて自動で動かす
 #### 環境構築
-- npm install npm-run-all -D
+- npm install -D npm-run-all
 #### まとめて自動コンパイル
 基本的に↑のPhaserとかSASSと同じ
 1. コマンドプロンプトを立ち上げてプロジェクトのルートディレクトリに移動

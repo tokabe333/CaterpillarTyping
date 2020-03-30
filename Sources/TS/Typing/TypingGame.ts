@@ -7,6 +7,9 @@ import { JapanseseInputUtility } from "./JapaneseInputUtility";
 // 可能なタイピングの種類
 export interface TypingRoman{roman: string, isTyped: boolean};
 
+// タイピング中 or タイピングするローマ字(打った値によって変わっていく)
+interface PreviewRoman{white: string, gray: string};
+
 // ゲー無
 export class TypingTest extends Phaser.Scene {
     // --------------- Private変数(undifined可) ---------------
@@ -45,7 +48,7 @@ export class TypingTest extends Phaser.Scene {
     // 現在何個目の文字を入力しているか
     private currentCharacterNumber: number = 0;
     // 現在入力している文字の中で何文字目か
-    private currentCharacterNumberofCurrentCharacter: number = 0;
+    private currentRomanNumber: number = 0;
     // 現在の文章に対して，これまで入力した正解キー
     private typedKeysFromCurrentText: string = "";
 
@@ -74,35 +77,34 @@ export class TypingTest extends Phaser.Scene {
             console.log(keyToRoman[keyCode!]);
 
             // 現在入力待ちの文字と同じか
-            if(this.typingText!.text[this.currentCharacterNumber] == keyToRoman[keyCode]){
-                this.currentCharacterNumber += 1;
-                let currentStr = this.typingText!.text;
+            //if(this.typingText!.text[this.currentCharacterNumber] == keyToRoman[keyCode]){
+            if(this.isCorrectRomanInput(keyToRoman[keyCode])){
                 // 最後の文字が終了していたら次の文字列へ
-                if(this.currentCharacterNumber >= currentStr.length){
+                if(this.currentCharacterNumber >= this.correctInputRomans.length){
                     this.currentTextNumber += 1;
                     this.currentCharacterNumber = 0;
+                    this.currentRomanNumber = 0;
                     
                     // 最後の文字列だったら終了
                     if(this.currentTextNumber >= this.previewString.length){
                         this.scene.start("result");
+                        return;
                     } //End_If
 
                     // 次の文字列
-                    let nextStr = this.setHiraganaAndPreviewRoman(this.typingString[this.currentTextNumber]);
+                    this.setHiraganaAndPreviewRoman(this.typingString[this.currentTextNumber]);
+                    let preview: PreviewRoman = this.updatePreviewRoman(true);
                     console.log("splitted:", this.splittedHiragana);
                     console.log("correct:", this.correctInputRomans);
                     console.log();
 
                     // 次の文字列を表示
-                    this.typingTextPlaced!.text = nextStr;
-                    this.typingText!.text = nextStr;
+                    this.typingTextPlaced!.text = preview.gray;
+                    this.typingText!.text = preview.white;
                     this.previewText!.text = this.previewString[this.currentTextNumber];
                 } // そうでなければ文字を暗くして次の文字へ
                 else{
-                    let str = "";
-                    for(let i = 0; i < this.currentCharacterNumber; i += 1){ str += " "; }
-                    str += currentStr.substring(this.currentCharacterNumber, currentStr.length);
-                    this.typingText!.text = str;
+                    this.updatePreviewRoman(true);
                 } //End_Else 
             } //End_If
         }); //End_Event
@@ -115,13 +117,14 @@ export class TypingTest extends Phaser.Scene {
         this.previewText = this.add.text(400, 300, this.previewString[0], this.previewFontStyle).setOrigin(0.5, 0.5);
 
         // タイピング用のローマ字関係
-        let preview: string = this.setHiraganaAndPreviewRoman(this.typingString[0]);
+        this.setHiraganaAndPreviewRoman(this.typingString[0]);
+        let preview: PreviewRoman = this.updatePreviewRoman(false);
         console.log("splitted:", this.splittedHiragana);
         console.log("correct:", this.correctInputRomans);
         console.log();
 
-        this.typingTextPlaced = this.add.text(400, 250, preview, this.typingPlacedFontStyle).setOrigin(0.5, 0.5);
-        this.typingText = this.add.text(400, 250, preview, this.typingFontStyle).setOrigin(0.5, 0.5);
+        this.typingTextPlaced = this.add.text(400, 250, preview.gray, this.typingPlacedFontStyle).setOrigin(0.5, 0.5);
+        this.typingText = this.add.text(400, 250, preview.white, this.typingFontStyle).setOrigin(0.5, 0.5);
     } //End_Method
 
     // ゲームの各フレーム更新毎に呼びだされる
@@ -151,19 +154,77 @@ export class TypingTest extends Phaser.Scene {
 
     // jpnInputUtilを使って次の入力文字の正解を作っておく
     // returnは初期表示用ローマ字
-    private setHiraganaAndPreviewRoman(typingHiragana: string): string{
+    private setHiraganaAndPreviewRoman(typingHiragana: string){
         this.splittedHiragana = this.jpnInputUtil!.parseHiraganaSentence(typingHiragana);
         this.correctInputRomans = this.jpnInputUtil!.constructTypingSentence(this.splittedHiragana);
-        let previewRoman:string = this.splittedHiraganaToViewingRoman(this.splittedHiragana);
-        return previewRoman;
     } //End_Method
 
     // 現在入力待ちのローマ字が入力されたか
     // return 
     private isCorrectRomanInput(roman: string): boolean{
-        
+        let isCorrect:boolean = false;
+        for(let i = 0; i < this.correctInputRomans[this.currentCharacterNumber].length; ++i){
+            // すでにアウトなら使わない
+            if(!this.correctInputRomans[this.currentCharacterNumber][i].isTyped){ continue; }
+           
+            // 入力されたやつと同じ文字が待ちになっていたら
+            if(this.correctInputRomans[this.currentCharacterNumber][i].roman[this.currentRomanNumber] == roman){
+                isCorrect = true;
+            } 
+        } //End_For
 
-        return true;
+        // がばってなかったら次の文字にイク
+        if(isCorrect){
+            // 他のローマ字の入力候補を削除する
+            for(let i = 0; i < this.correctInputRomans[this.currentCharacterNumber].length; ++i){
+                if(this.correctInputRomans[this.currentCharacterNumber][i].roman[this.currentRomanNumber] != roman){
+                    this.correctInputRomans[this.currentCharacterNumber][i].isTyped = false;
+                } //End_If
+            } //End_For
+
+            this.currentRomanNumber += 1;
+            // 入力中のひらがなが打ち終わっていたら次のひらがな
+            let isRomaned = false;
+            for(let i = 0; i < this.correctInputRomans[this.currentCharacterNumber].length; ++i){
+                if(this.correctInputRomans[this.currentCharacterNumber][i].isTyped &&
+                    this.correctInputRomans[this.currentCharacterNumber][i].roman[this.currentRomanNumber] === undefined){
+                        this.currentRomanNumber = 0;
+                        this.currentCharacterNumber += 1;
+                        break;
+                } //End_If
+            } //End_For
+        } //End_If
+
+        console.log("isCorrect:"+isCorrect+" currCharNum:"+this.currentCharacterNumber+" currRomaNum:"+this.currentRomanNumber);
+        //console.log(this.correctInputRomans);
+        return isCorrect;
+    } //End_Method
+
+    // 画面表示されてるローマ字のうｐだて
+    private updatePreviewRoman(setText: boolean): PreviewRoman{
+        let gray: string = "";
+        let len: number = 0;
+        for(let i = 0; i < this.correctInputRomans.length; ++i){
+            for(let j = 0; j < this.correctInputRomans[i].length; ++j){
+                if(this.correctInputRomans[i][j].isTyped){
+                    gray += this.correctInputRomans[i][j].roman;
+                    // 灰塗りする文字数カウント
+                    if(this.currentCharacterNumber > i){ len += this.correctInputRomans[i][j].roman.length; }
+                    else if(this.currentCharacterNumber == i){ len += this.currentRomanNumber; }
+                    break;
+                } //End_If
+            } //End_For
+        } //End_For
+
+        let white: string = "";
+        for(let i = 0; i < len; ++i){ white += " "; }
+        white += gray.substring(white.length, gray.length);
+
+        if(setText){
+            this.typingTextPlaced!.text = gray;
+            this.typingText!.text = white;
+        } //End_If
+        return {white, gray};
     } //End_Method
 } //End_Class
 
