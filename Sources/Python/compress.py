@@ -60,3 +60,4 @@ def Compress(filePath):
 
 if __name__ == "__main__":
     Main()
+

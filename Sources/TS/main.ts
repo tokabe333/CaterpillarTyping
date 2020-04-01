@@ -3,7 +3,6 @@ import * as Phaser from "phaser";
 import { Welcome } from "./Typing/Welcome";
 import { TypingTest } from "./Typing/TypingGame";
 import { Result } from "./Typing/Result";
-import { DocumentCookies } from "./Util/CookiesUtil";
 
 export var width: number = 800;
 export var height: number = 600;
