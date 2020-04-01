@@ -194,7 +194,6 @@ export class TypingTest extends Phaser.Scene {
     // return 
     private isCorrectRomanInput(roman: string): boolean{
         let isCorrect: boolean = false;
-        let nnCorect: boolean = false;
         for(let i = 0; i < this.correctInputRomans[this.currentCharacterNumber].length; ++i){
             // すでにアウトなら使わない
             if(!this.correctInputRomans[this.currentCharacterNumber][i].isTyped){ continue; }
@@ -210,15 +209,14 @@ export class TypingTest extends Phaser.Scene {
             this.currentCharacterNumber < this.splittedHiragana.length - 1 && 
             !this.checkNextHiraganaIsNN(this.splittedHiragana[this.currentCharacterNumber + 1])
             ){
-            // for(let i = 0; i < this.correctInputRomans[this.currentCharacterNumber].length; ++i){
-            //     this.currentCharacterNumber += 1;
-            //     this.currentRomanNumber = 0;
-            //     nnCorect = true;
-            //     break;
-            // } //End_For
-            this.currentCharacterNumber += 1;
-            this.currentRomanNumber = 1;
-            isCorrect = true;
+            for(let i = 0; i < this.correctInputRomans[this.currentCharacterNumber + 1].length; ++i){
+                if(this.correctInputRomans[this.currentCharacterNumber + 1][i].roman[0] === roman){
+                    this.currentCharacterNumber += 1;
+                    this.currentRomanNumber = 0;
+                    isCorrect = true;
+                    break;
+                } //End_If
+            } //End_For
         } //End_if  
 
         // がばってなかったら次の文字にイク
