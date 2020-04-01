@@ -66,9 +66,9 @@ function preload(){
 
   let logoutForm = document.createElement("form");
   logoutForm.setAttribute("method","GET");
+  logoutForm.setAttribute("action","https://naothinthin.xyz/myapp/logout/");
 
   let logoutButton = document.createElement("input");
-  logoutForm.setAttribute("action","https://naothinthin.xyz/myapp/temp_logout");
   logoutButton.setAttribute("type","submit");
   logoutButton.setAttribute("value","logout");
   
