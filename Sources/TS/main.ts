@@ -6,6 +6,7 @@ import { Result } from "./Typing/Result";
 
 export var width: number = 800;
 export var height: number = 600;
+export var gameFinishTimeMillisecond: number = 1 * 60 * 1000;
 
 // Phaser3のゲームクラスの記述（Phaser.Gameクラスを継承したMainクラスの記述）
 class Main extends Phaser.Game {

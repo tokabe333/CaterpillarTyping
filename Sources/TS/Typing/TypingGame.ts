@@ -2,6 +2,8 @@ import * as Phaser from "phaser";
 import { jpnToRoman } from "./JapaneseRomanRelation";
 import { keyToRoman } from "./KeyboardRomanRelation";
 import { GetKeyDown } from "./GetKeyDown";
+import { mojiretsu } from "./TypingMojiretsu";
+import { gameFinishTimeMillisecond } from "../main";
 import { JapanseseInputUtility } from "./JapaneseInputUtility";
 
 // 可能なタイピングの種類
@@ -32,16 +34,6 @@ export class TypingTest extends Phaser.Scene {
 
 
     // --------------- Private変数(undifined不可) ---------------
-    // タイピング画面に表示するテキスト
-    private previewString: string[] = [
-        "世界は色に溢れている",
-        "やきうのお兄ちゃん",
-    ];
-    // 入力を受け付けるテキスト
-    private typingString: string[] = [
-        "せかいはいろにあふれている",
-        "やきうのおにいちゃん",
-    ];
 
     // 背景色とフォントスタイル
     private backColor: string = "0x008d00";
@@ -62,6 +54,9 @@ export class TypingTest extends Phaser.Scene {
     private splittedHiragana: string[] = new Array();
     // ↑のひらがなをもとに作成した正解のローマ字入力パターン
     private correctInputRomans: TypingRoman[][] = new Array();    
+
+    // 現在どの文字列を参照しているか
+    private currentRandomNumber: number = -114514;
 
     // --------------- Phaser用メソッド ---------------
 
@@ -100,16 +95,19 @@ export class TypingTest extends Phaser.Scene {
                     this.currentTextNumber += 1;
                     this.currentCharacterNumber = 0;
                     this.currentRomanNumber = 0;
+                    this.currentRandomNumber = Math.floor(Math.random() * mojiretsu.length);
                     
                     // 最後の文字列だったら終了
-                    if(this.currentTextNumber >= this.previewString.length){
+                    //if(this.currentTextNumber >= this.previewString.length){
+                    // 時間で終了させる
+                    if(performance.now() - clearTime >= gameFinishTimeMillisecond){
                         this.scene.start("result");
                         clearTime = performance.now() - clearTime;
                         return;
                     } //End_If
 
                     // 次の文字列
-                    this.setHiraganaAndPreviewRoman(this.typingString[this.currentTextNumber]);
+                    this.setHiraganaAndPreviewRoman(mojiretsu[this.currentRandomNumber][1]);
                     let preview: PreviewRoman = this.updatePreviewRoman(true);
                     console.log("splitted:", this.splittedHiragana);
                     console.log("correct:", this.correctInputRomans);
@@ -118,7 +116,7 @@ export class TypingTest extends Phaser.Scene {
                     // 次の文字列を表示
                     this.typingTextPlaced!.text = preview.gray;
                     this.typingText!.text = preview.white;
-                    this.previewText!.text = this.previewString[this.currentTextNumber];
+                    this.previewText!.text = mojiretsu[this.currentRandomNumber][0];
                 } // そうでなければ文字を暗くして次の文字へ
                 else{
                     this.updatePreviewRoman(true);
@@ -138,12 +136,15 @@ export class TypingTest extends Phaser.Scene {
 
     // ゲームオブジェクトの描写
     create() {
+        // 最初に表示する文字列
+        this.currentRandomNumber = Math.floor(Math.random() * mojiretsu.length);
+
         // 表示関係
         this.cameras.main.setBackgroundColor(this.backColor);
-        this.previewText = this.add.text(400, 300, this.previewString[0], this.previewFontStyle).setOrigin(0.5, 0.5);
+        this.previewText = this.add.text(400, 300, mojiretsu[this.currentRandomNumber][0], this.previewFontStyle).setOrigin(0.5, 0.5);
 
         // タイピング用のローマ字関係
-        this.setHiraganaAndPreviewRoman(this.typingString[0]);
+        this.setHiraganaAndPreviewRoman(mojiretsu[this.currentRandomNumber][1]);
         let preview: PreviewRoman = this.updatePreviewRoman(false);
         console.log("splitted:", this.splittedHiragana);
         console.log("correct:", this.correctInputRomans);
