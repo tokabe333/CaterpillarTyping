@@ -38,6 +38,9 @@ export class Result extends Phaser.Scene {
     this.missedTypeNumText = this.add.text(width * 0.5, height * 0.3 + 150, "タイプミス数 : " + missedTypeNum, this.resultFontStyle).setOrigin(0.5);
     this.typePerSecondText = this.add.text(width * 0.5 , height * 0.3 + 200, "タイプ数 / 秒 : " + correctedTypeNum / (clearTime / 1000), this.resultFontStyle).setOrigin(0.5);
     this.weekKeyTypeText = this.add.text(width * 0.5, height * 0.3 + 250, "苦手キー : " + this.checkWeekType(missedTypeKind, this.previewWeekTypeNum), this.resultFontStyle).setOrigin(0.5);
+  
+  	this.resultText!.setInteractive();
+		this.resultText!.on("pointerdown", () => { this.scene.start("welcome");});
   } //End_Method
 
   // ゲームの各フレーム更新毎に呼びだされる

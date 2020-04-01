@@ -11,6 +11,6 @@
         "removeComments": true
     },
     "include": [
-        "./Sources/**/*"
+        "./Sources/**/*", "webpack-dev.config.js"
     ]
 }

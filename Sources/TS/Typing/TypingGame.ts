@@ -73,6 +73,11 @@ export class TypingTest extends Phaser.Scene {
         // 正誤判定のユーティリティインスタンス生成
         this.jpnInputUtil = new JapanseseInputUtility();
 
+        // 終了関係を初期化
+        this.currentTextNumber = 0;
+        this.currentCharacterNumber = 0;
+        this.currentRomanNumber = 0;
+
         // リザルト関連を初期化
         missedTypeKind = {};
         missedTypeNum = 0;
