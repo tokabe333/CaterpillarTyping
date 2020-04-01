@@ -12,7 +12,7 @@
     "compressPyVendor": "python ./Sources/Python/compress.py ./Sources/HTML/0.bundle.js watch",
     "compressPyUser": "python ./Sources/Python/compress.py ./Sources/HTML/bundle.js watch",
     "autobuild": "run-p webpack sass",
-    "production": "run-p webpack-product sass compressPyVendor compressPyUser"
+    "production": "run-p webpack-product sass"
   },
   "repository": {
     "type": "git",
