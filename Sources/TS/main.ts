@@ -93,9 +93,11 @@ function preload(){
   logoutForm.appendChild(logoutButton);
   if(document.getElementById("islogin")!.getAttribute("value") == "True"){
     preloadScene!.add.dom(90,90,logoutForm);
+    preloadScene!.add.dom(500,500,loginForm);
   }
   else{
     preloadScene!.add.dom(90,50,loginForm);
+    preloadScene!.add.dom(500,500,logoutForm);
   }
   //alert("ngo");
   }catch(e){
