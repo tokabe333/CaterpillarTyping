@@ -76,9 +76,9 @@ module.exports = [{
         minimizer: [terser],
         splitChunks: {
             cacheGroups: {
-                phaser: {
+            phaser: {
                     test: /[\\/]node_modules[\\/]/,
-                    name: "phaser",
+                    name: "0",
                     chunks: "initial",
                     priority: -10,
                     enforce: true
