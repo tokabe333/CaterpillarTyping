@@ -119,7 +119,6 @@ export class TypingTest extends Phaser.Scene {
                     this.previewText!.text = mojiretsu[this.currentRandomNumber][0];
                 } // そうでなければ文字を暗くして次の文字へ
                 else{
-                    console.log(this.correctInputRomans);
                     this.updatePreviewRoman(true);
                 } //End_Else 
 
