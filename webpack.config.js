@@ -13,7 +13,7 @@ var terser = new TerserPlugin({
             indent_start: 0,
         },
         compress: {
-            drop_console: true,
+            //drop_console: true,
             dead_code: true,
             properties: true,
             drop_debugger: true,

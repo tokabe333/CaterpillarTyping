@@ -10,6 +10,12 @@ export interface TypingRoman{roman: string, isTyped: boolean};
 // タイピング中 or タイピングするローマ字(打った値によって変わっていく)
 interface PreviewRoman{white: string, gray: string};
 
+//各種リザルト
+export var missedTypeKind: {[key: string]: number} = {};
+export var missedTypeNum: number = 0;
+export var correctedTypeNum: number = 0;
+export var clearTime: number = -1145141919810;
+
 // ゲー無
 export class TypingTest extends Phaser.Scene {
     // --------------- Private変数(undifined可) ---------------
@@ -55,8 +61,7 @@ export class TypingTest extends Phaser.Scene {
     // 現在表示している日本語を1文字or2文字で分割したやつ "や","きゅ","う","み","ん"
     private splittedHiragana: string[] = new Array();
     // ↑のひらがなをもとに作成した正解のローマ字入力パターン
-    private correctInputRomans: TypingRoman[][] = new Array();
-
+    private correctInputRomans: TypingRoman[][] = new Array();    
 
     // --------------- Phaser用メソッド ---------------
 
@@ -67,6 +72,12 @@ export class TypingTest extends Phaser.Scene {
 
         // 正誤判定のユーティリティインスタンス生成
         this.jpnInputUtil = new JapanseseInputUtility();
+
+        // リザルト関連を初期化
+        missedTypeKind = {};
+        missedTypeNum = 0;
+        correctedTypeNum = 0;
+        clearTime = -810931;
     } //End_Method
 
     // アセットのロード
@@ -88,6 +99,7 @@ export class TypingTest extends Phaser.Scene {
                     // 最後の文字列だったら終了
                     if(this.currentTextNumber >= this.previewString.length){
                         this.scene.start("result");
+                        clearTime = performance.now() - clearTime;
                         return;
                     } //End_If
 
@@ -106,7 +118,16 @@ export class TypingTest extends Phaser.Scene {
                 else{
                     this.updatePreviewRoman(true);
                 } //End_Else 
-            } //End_If
+
+                // 正しく入力できた文字数を記録
+                correctedTypeNum += 1;
+            } // ガバった文字は記録
+            else{
+                missedTypeNum += 1;
+                let keyS: string = keyToRoman[keyCode];
+                if(missedTypeKind[keyS] === undefined) { missedTypeKind[keyS] = 1;}
+                else{ missedTypeKind[keyS] += 1; }
+            } //End_IfElse
         }); //End_Event
     } //End_Method
 
@@ -125,6 +146,9 @@ export class TypingTest extends Phaser.Scene {
 
         this.typingTextPlaced = this.add.text(400, 250, preview.gray, this.typingPlacedFontStyle).setOrigin(0.5, 0.5);
         this.typingText = this.add.text(400, 250, preview.white, this.typingFontStyle).setOrigin(0.5, 0.5);
+    
+        // 計測開始
+        clearTime = performance.now();
     } //End_Method
 
     // ゲームの各フレーム更新毎に呼びだされる
