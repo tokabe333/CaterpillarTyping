@@ -227,4 +227,3 @@ export class TypingTest extends Phaser.Scene {
         return {white, gray};
     } //End_Method
 } //End_Class
-

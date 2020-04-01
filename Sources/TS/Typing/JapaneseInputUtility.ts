@@ -2,6 +2,7 @@ import * as Phaser from "phaser";
 import { jpnToRoman } from "./JapaneseRomanRelation";
 import { TypingRoman } from "./TypingGame";
 
+
 // ひらがなとローマ字の対応が複数あるためそのへんをいい感じにする機能の提供
 export class JapanseseInputUtility{
     // ひらがなを1文字くぎりと2文字くぎり("ちゃ"など)で分割したパターンをつくる
