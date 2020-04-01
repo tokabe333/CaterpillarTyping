@@ -119,6 +119,7 @@ export class TypingTest extends Phaser.Scene {
                     this.previewText!.text = mojiretsu[this.currentRandomNumber][0];
                 } // そうでなければ文字を暗くして次の文字へ
                 else{
+                    console.log(this.correctInputRomans);
                     this.updatePreviewRoman(true);
                 } //End_Else 
 
@@ -210,6 +211,7 @@ export class TypingTest extends Phaser.Scene {
             ){
             for(let i = 0; i < this.correctInputRomans[this.currentCharacterNumber + 1].length; ++i){
                 if(this.correctInputRomans[this.currentCharacterNumber + 1][i].roman[0] === roman){
+                    this.correctInputRomans[this.currentCharacterNumber][0].isTyped = false;
                     this.currentCharacterNumber += 1;
                     this.currentRomanNumber = 0;
                     isCorrect = true;
@@ -249,6 +251,14 @@ export class TypingTest extends Phaser.Scene {
 
     // 画面表示されてるローマ字のうｐだて
     private updatePreviewRoman(setText: boolean): PreviewRoman{
+        // 前の文字が n 1回のみで呼ばれた場合
+        if(this.currentCharacterNumber > 0 &&
+            this.splittedHiragana[this.currentCharacterNumber - 1] === "ん" &&
+            this.correctInputRomans[this.currentCharacterNumber - 1][0].isTyped === false){
+                this.correctInputRomans[this.currentCharacterNumber - 1][0].roman = "n";
+                this.correctInputRomans[this.currentCharacterNumber - 1][0].isTyped = true;
+        } //End_If
+        
         let gray: string = "";
         let len: number = 0;
         for(let i = 0; i < this.correctInputRomans.length; ++i){
@@ -280,6 +290,6 @@ export class TypingTest extends Phaser.Scene {
             hiragana === "な" || hiragana === "に" || hiragana === "ぬ" || hiragana === "ね" || hiragana === "の" ||
             hiragana === "にゃ" || hiragana === "にゅ" || hiragana === "にょ" ||
             hiragana === "ん" || hiragana === "や" || hiragana === "ゆ" || hiragana === "よ"
-        );
+        ); // return
     } //End_Method
 } //End_Class
