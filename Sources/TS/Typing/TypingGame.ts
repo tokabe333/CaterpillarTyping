@@ -193,6 +193,24 @@ export class TypingTest extends Phaser.Scene {
     // 現在入力待ちのローマ字が入力されたか
     // return 
     private isCorrectRomanInput(roman: string): boolean{
+        // 前の文字が っ でなおかつ，一文字で打っていたらその文字でしかだめ
+        if(this.currentCharacterNumber > 0 &&
+            this.splittedHiragana[this.currentCharacterNumber - 1] === "っ" &&
+            this.currentRomanNumber === 0
+        ){
+            for(let i = 0; i < this.correctInputRomans[this.currentCharacterNumber - 1].length; i += 1){
+                if(this.correctInputRomans[this.currentCharacterNumber - 1][i].roman.length === 1 &&
+                    this.correctInputRomans[this.currentCharacterNumber - 1][i].isTyped){
+                    let ngo: string = this.correctInputRomans[this.currentCharacterNumber - 1][i].roman;
+                    for(let j = 0; j < this.correctInputRomans[this.currentCharacterNumber].length; j += 1){
+                        if(this.correctInputRomans[this.currentCharacterNumber][j].roman[0] !== ngo){
+                            this.correctInputRomans[this.currentCharacterNumber][j].isTyped = false;
+                        } //End_If
+                    } //End_For
+                } //End_If
+            } //End_For
+        } //End_If
+
         let isCorrect: boolean = false;
         for(let i = 0; i < this.correctInputRomans[this.currentCharacterNumber].length; ++i){
             // すでにアウトなら使わない
