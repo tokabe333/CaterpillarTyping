@@ -71,7 +71,7 @@ export class JapanseseInputUtility{
                 let nexts:string[] = jpnToRoman[ns];
                 let hash:{[key: string]:boolean} = {};
                 // 次の文字の子音
-                for(let next in nexts){ hash[next] = true; }
+                for(let nnn = 0; nnn < nexts.length; nnn += 1){ hash[nexts[nnn][0]] = true; }
                 for(let h in hash){ tmp.push({roman: h, isTyped: true}); }
                 // 元の"っ"の入力
                 for(let l in ltu){ tmp.push({roman: ltu[l], isTyped: true}); }

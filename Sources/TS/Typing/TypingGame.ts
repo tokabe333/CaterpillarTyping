@@ -2,6 +2,8 @@ import * as Phaser from "phaser";
 import { jpnToRoman } from "./JapaneseRomanRelation";
 import { keyToRoman } from "./KeyboardRomanRelation";
 import { GetKeyDown } from "./GetKeyDown";
+import { mojiretsu } from "./TypingMojiretsu";
+import { gameFinishTimeMillisecond } from "../main";
 import { JapanseseInputUtility } from "./JapaneseInputUtility";
 
 // 可能なタイピングの種類
@@ -9,6 +11,12 @@ export interface TypingRoman{roman: string, isTyped: boolean};
 
 // タイピング中 or タイピングするローマ字(打った値によって変わっていく)
 interface PreviewRoman{white: string, gray: string};
+
+//各種リザルト
+export var missedTypeKind: {[key: string]: number} = {};
+export var missedTypeNum: number = 0;
+export var correctedTypeNum: number = 0;
+export var clearTime: number = -1145141919810;
 
 // ゲー無
 export class TypingTest extends Phaser.Scene {
@@ -26,16 +34,6 @@ export class TypingTest extends Phaser.Scene {
 
 
     // --------------- Private変数(undifined不可) ---------------
-    // タイピング画面に表示するテキスト
-    private previewString: string[] = [
-        "世界は色に溢れている",
-        "やきうのお兄ちゃん",
-    ];
-    // 入力を受け付けるテキスト
-    private typingString: string[] = [
-        "せかいはいろにあふれている",
-        "やきうのおにいちゃん",
-    ];
 
     // 背景色とフォントスタイル
     private backColor: string = "0x008d00";
@@ -55,8 +53,10 @@ export class TypingTest extends Phaser.Scene {
     // 現在表示している日本語を1文字or2文字で分割したやつ "や","きゅ","う","み","ん"
     private splittedHiragana: string[] = new Array();
     // ↑のひらがなをもとに作成した正解のローマ字入力パターン
-    private correctInputRomans: TypingRoman[][] = new Array();
+    private correctInputRomans: TypingRoman[][] = new Array();    
 
+    // 現在どの文字列を参照しているか
+    private currentRandomNumber: number = -114514;
 
     // --------------- Phaser用メソッド ---------------
 
@@ -67,6 +67,17 @@ export class TypingTest extends Phaser.Scene {
 
         // 正誤判定のユーティリティインスタンス生成
         this.jpnInputUtil = new JapanseseInputUtility();
+
+        // 終了関係を初期化
+        this.currentTextNumber = 0;
+        this.currentCharacterNumber = 0;
+        this.currentRomanNumber = 0;
+
+        // リザルト関連を初期化
+        missedTypeKind = {};
+        missedTypeNum = 0;
+        correctedTypeNum = 0;
+        clearTime = -810931;
     } //End_Method
 
     // アセットのロード
@@ -84,15 +95,19 @@ export class TypingTest extends Phaser.Scene {
                     this.currentTextNumber += 1;
                     this.currentCharacterNumber = 0;
                     this.currentRomanNumber = 0;
+                    this.currentRandomNumber = Math.floor(Math.random() * mojiretsu.length);
                     
                     // 最後の文字列だったら終了
-                    if(this.currentTextNumber >= this.previewString.length){
+                    //if(this.currentTextNumber >= this.previewString.length){
+                    // 時間で終了させる
+                    if(performance.now() - clearTime >= gameFinishTimeMillisecond){
                         this.scene.start("result");
+                        clearTime = performance.now() - clearTime;
                         return;
                     } //End_If
 
                     // 次の文字列
-                    this.setHiraganaAndPreviewRoman(this.typingString[this.currentTextNumber]);
+                    this.setHiraganaAndPreviewRoman(mojiretsu[this.currentRandomNumber][1]);
                     let preview: PreviewRoman = this.updatePreviewRoman(true);
                     console.log("splitted:", this.splittedHiragana);
                     console.log("correct:", this.correctInputRomans);
@@ -101,23 +116,36 @@ export class TypingTest extends Phaser.Scene {
                     // 次の文字列を表示
                     this.typingTextPlaced!.text = preview.gray;
                     this.typingText!.text = preview.white;
-                    this.previewText!.text = this.previewString[this.currentTextNumber];
+                    this.previewText!.text = mojiretsu[this.currentRandomNumber][0];
                 } // そうでなければ文字を暗くして次の文字へ
                 else{
+                    console.log(this.correctInputRomans);
                     this.updatePreviewRoman(true);
                 } //End_Else 
-            } //End_If
+
+                // 正しく入力できた文字数を記録
+                correctedTypeNum += 1;
+            } // ガバった文字は記録
+            else{
+                missedTypeNum += 1;
+                let keyS: string = keyToRoman[keyCode];
+                if(missedTypeKind[keyS] === undefined) { missedTypeKind[keyS] = 1;}
+                else{ missedTypeKind[keyS] += 1; }
+            } //End_IfElse
         }); //End_Event
     } //End_Method
 
     // ゲームオブジェクトの描写
     create() {
+        // 最初に表示する文字列
+        this.currentRandomNumber = Math.floor(Math.random() * mojiretsu.length);
+
         // 表示関係
         this.cameras.main.setBackgroundColor(this.backColor);
-        this.previewText = this.add.text(400, 300, this.previewString[0], this.previewFontStyle).setOrigin(0.5, 0.5);
+        this.previewText = this.add.text(400, 300, mojiretsu[this.currentRandomNumber][0], this.previewFontStyle).setOrigin(0.5, 0.5);
 
         // タイピング用のローマ字関係
-        this.setHiraganaAndPreviewRoman(this.typingString[0]);
+        this.setHiraganaAndPreviewRoman(mojiretsu[this.currentRandomNumber][1]);
         let preview: PreviewRoman = this.updatePreviewRoman(false);
         console.log("splitted:", this.splittedHiragana);
         console.log("correct:", this.correctInputRomans);
@@ -125,6 +153,9 @@ export class TypingTest extends Phaser.Scene {
 
         this.typingTextPlaced = this.add.text(400, 250, preview.gray, this.typingPlacedFontStyle).setOrigin(0.5, 0.5);
         this.typingText = this.add.text(400, 250, preview.white, this.typingFontStyle).setOrigin(0.5, 0.5);
+    
+        // 計測開始
+        clearTime = performance.now();
     } //End_Method
 
     // ゲームの各フレーム更新毎に呼びだされる
@@ -162,7 +193,25 @@ export class TypingTest extends Phaser.Scene {
     // 現在入力待ちのローマ字が入力されたか
     // return 
     private isCorrectRomanInput(roman: string): boolean{
-        let isCorrect:boolean = false;
+        // 前の文字が っ でなおかつ，一文字で打っていたらその文字でしかだめ
+        if(this.currentCharacterNumber > 0 &&
+            this.splittedHiragana[this.currentCharacterNumber - 1] === "っ" &&
+            this.currentRomanNumber === 0
+        ){
+            for(let i = 0; i < this.correctInputRomans[this.currentCharacterNumber - 1].length; i += 1){
+                if(this.correctInputRomans[this.currentCharacterNumber - 1][i].roman.length === 1 &&
+                    this.correctInputRomans[this.currentCharacterNumber - 1][i].isTyped){
+                    let ngo: string = this.correctInputRomans[this.currentCharacterNumber - 1][i].roman;
+                    for(let j = 0; j < this.correctInputRomans[this.currentCharacterNumber].length; j += 1){
+                        if(this.correctInputRomans[this.currentCharacterNumber][j].roman[0] !== ngo){
+                            this.correctInputRomans[this.currentCharacterNumber][j].isTyped = false;
+                        } //End_If
+                    } //End_For
+                } //End_If
+            } //End_For
+        } //End_If
+
+        let isCorrect: boolean = false;
         for(let i = 0; i < this.correctInputRomans[this.currentCharacterNumber].length; ++i){
             // すでにアウトなら使わない
             if(!this.correctInputRomans[this.currentCharacterNumber][i].isTyped){ continue; }
@@ -170,8 +219,24 @@ export class TypingTest extends Phaser.Scene {
             // 入力されたやつと同じ文字が待ちになっていたら
             if(this.correctInputRomans[this.currentCharacterNumber][i].roman[this.currentRomanNumber] == roman){
                 isCorrect = true;
-            } 
+            } // End_If
         } //End_For
+
+        // ん だったら次の文字が子音でもOK (最後の文字じゃなかったら)
+        if(this.splittedHiragana[this.currentCharacterNumber] === "ん" &&
+            this.currentCharacterNumber < this.splittedHiragana.length - 1 && 
+            !this.checkNextHiraganaIsNN(this.splittedHiragana[this.currentCharacterNumber + 1])
+            ){
+            for(let i = 0; i < this.correctInputRomans[this.currentCharacterNumber + 1].length; ++i){
+                if(this.correctInputRomans[this.currentCharacterNumber + 1][i].roman[0] === roman){
+                    this.correctInputRomans[this.currentCharacterNumber][0].isTyped = false;
+                    this.currentCharacterNumber += 1;
+                    this.currentRomanNumber = 0;
+                    isCorrect = true;
+                    break;
+                } //End_If
+            } //End_For
+        } //End_if  
 
         // がばってなかったら次の文字にイク
         if(isCorrect){
@@ -181,6 +246,8 @@ export class TypingTest extends Phaser.Scene {
                     this.correctInputRomans[this.currentCharacterNumber][i].isTyped = false;
                 } //End_If
             } //End_For
+
+            //if(nnCorect){ return true; }
 
             this.currentRomanNumber += 1;
             // 入力中のひらがなが打ち終わっていたら次のひらがな
@@ -202,6 +269,14 @@ export class TypingTest extends Phaser.Scene {
 
     // 画面表示されてるローマ字のうｐだて
     private updatePreviewRoman(setText: boolean): PreviewRoman{
+        // 前の文字が n 1回のみで呼ばれた場合
+        if(this.currentCharacterNumber > 0 &&
+            this.splittedHiragana[this.currentCharacterNumber - 1] === "ん" &&
+            this.correctInputRomans[this.currentCharacterNumber - 1][0].isTyped === false){
+                this.correctInputRomans[this.currentCharacterNumber - 1][0].roman = "n";
+                this.correctInputRomans[this.currentCharacterNumber - 1][0].isTyped = true;
+        } //End_If
+        
         let gray: string = "";
         let len: number = 0;
         for(let i = 0; i < this.correctInputRomans.length; ++i){
@@ -225,5 +300,14 @@ export class TypingTest extends Phaser.Scene {
             this.typingText!.text = white;
         } //End_If
         return {white, gray};
+    } //End_Method
+
+    // nを一つで終わらせていいか
+    private checkNextHiraganaIsNN(hiragana: string): boolean{
+        return (
+            hiragana === "な" || hiragana === "に" || hiragana === "ぬ" || hiragana === "ね" || hiragana === "の" ||
+            hiragana === "にゃ" || hiragana === "にゅ" || hiragana === "にょ" ||
+            hiragana === "ん" || hiragana === "や" || hiragana === "ゆ" || hiragana === "よ"
+        ); // return
     } //End_Method
 } //End_Class
