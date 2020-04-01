@@ -1,5 +1,5 @@
 import * as Phaser from "phaser";
-import { width, height } from "../main";
+import { width, height, preload } from "../main";
 
 export class Welcome extends Phaser.Scene {
 	// --------------- Private変数(undifined可) ---------------
@@ -34,6 +34,7 @@ export class Welcome extends Phaser.Scene {
 		this.startText!.setInteractive();
 		this.startText!.on("pointerdown", () => { this.scene.start("typing");});
 
+		preload();
 	} //End_Method
 
 	// ゲームの各フレーム更新毎に呼びだされる
