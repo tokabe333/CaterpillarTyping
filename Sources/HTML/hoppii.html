@@ -5,13 +5,46 @@
 <head>
     <meta charset="UTF-8">
     <title>芋虫</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../CSS/style.css" />
 </head>
-<body>
+<body style="background: url(../../../../Images/backgrounds/01-whitepaper.png);">
+    <header>
+        <div id="header-container" style="background: url(../../../../Images/backgrounds/02-whitepaper.png);">
+            <div id="title-logo">
+                <a href="hoppii.html">🐛いもむし🐛</a>
+            </div>
+            <div class="header-list">
+                <ul>
+                    <li><a href="" >🍃更新のお知らせ(更新されるとは言ってない)🍃</a></li>
+                    <li><a href="" >🍃記録とか??🍃</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
     <div id="canvas-wrapper">
     </div>
-    <script src="./0.bundle.js"></script>
-    <script src="./bundle.js"></script>    
+    <div id="game-main">
+        <script src="./0.bundle.js"></script>
+        <script src="./bundle.js"></script> 
+        <div id="sub-mamu">
+            <h2>直近記録</h2> <!--ログインしてるんだから自己記録ぐらいあるといいよね-->
+            <ul>
+                <li><a href="">正しく入力できた文字数:</a></li>
+                <li><a href="">タイプミス数:</a></li>
+                <li><a href="">タイプ数/秒:</a></li>
+                <li><a href="">苦手キー:</a></li>
+            </ul>
+            <h2>自己最高記録</h2> <!--ログインしてるんだから自己記録ぐらいあるといいよね-->
+            <ul>
+                <li><a href="">正しく入力できた文字数:</a></li>
+                <li><a href="">タイプミス数:</a></li>
+                <li><a href="">タイプ数/秒:</a></li>
+                <li><a href="">苦手キー:</a></li>
+                <li><a href="">ランキング:</a></li>
+            </ul>
+        </div>
+    </div>
 	<!-- <script>alert(location.pathname);</script> -->
 </body>
 </html>
